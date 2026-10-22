@@ -1,0 +1,9 @@
+tests/
+src/
+.agents/
+.github/
+tsup.config.ts
+tsconfig.json
+vitest.config.ts
+*.log
+.npmrc
