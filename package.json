@@ -1,6 +1,6 @@
 {
   "name": "zakat-mal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Authoritative, mathematically rigorous, and Fiqh-verified Zakat Mal calculation engine. Grounded in Al-Qur'an, Sahih Hadith, AAOIFI Shari'ah Standard No. 35, and Fatwa MUI/BAZNAS.",
   "type": "commonjs",
   "sideEffects": false,
@@ -126,6 +126,76 @@
       "require": {
         "types": "./dist/dalil/index.d.ts",
         "default": "./dist/dalil/index.js"
+      }
+    },
+    "./oracle": {
+      "import": {
+        "types": "./dist/oracle/index.d.mts",
+        "default": "./dist/oracle/index.mjs"
+      },
+      "require": {
+        "types": "./dist/oracle/index.d.ts",
+        "default": "./dist/oracle/index.js"
+      }
+    },
+    "./basket": {
+      "import": {
+        "types": "./dist/basket/index.d.mts",
+        "default": "./dist/basket/index.mjs"
+      },
+      "require": {
+        "types": "./dist/basket/index.d.ts",
+        "default": "./dist/basket/index.js"
+      }
+    },
+    "./hawl": {
+      "import": {
+        "types": "./dist/hawl/index.d.mts",
+        "default": "./dist/hawl/index.mjs"
+      },
+      "require": {
+        "types": "./dist/hawl/index.d.ts",
+        "default": "./dist/hawl/index.js"
+      }
+    },
+    "./jurisdiction": {
+      "import": {
+        "types": "./dist/jurisdiction/index.d.mts",
+        "default": "./dist/jurisdiction/index.mjs"
+      },
+      "require": {
+        "types": "./dist/jurisdiction/index.d.ts",
+        "default": "./dist/jurisdiction/index.js"
+      }
+    },
+    "./akad": {
+      "import": {
+        "types": "./dist/akad/index.d.mts",
+        "default": "./dist/akad/index.mjs"
+      },
+      "require": {
+        "types": "./dist/akad/index.d.ts",
+        "default": "./dist/akad/index.js"
+      }
+    },
+    "./reports": {
+      "import": {
+        "types": "./dist/reports/index.d.mts",
+        "default": "./dist/reports/index.mjs"
+      },
+      "require": {
+        "types": "./dist/reports/index.d.ts",
+        "default": "./dist/reports/index.js"
+      }
+    },
+    "./schemas": {
+      "import": {
+        "types": "./dist/schemas/index.d.mts",
+        "default": "./dist/schemas/index.mjs"
+      },
+      "require": {
+        "types": "./dist/schemas/index.d.ts",
+        "default": "./dist/schemas/index.js"
       }
     }
   },

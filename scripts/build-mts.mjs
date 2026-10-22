@@ -66,7 +66,14 @@ if (fs.existsSync(distDir)) {
     { name: "investments", target: "modules/investments" },
     { name: "corporate", target: "modules/corporate" },
     { name: "rental-yield", target: "modules/rental-yield" },
-    { name: "dalil", target: "dalil/index" }
+    { name: "dalil", target: "dalil/index" },
+    { name: "oracle", target: "oracle/index" },
+    { name: "basket", target: "basket/index" },
+    { name: "hawl", target: "hawl/index" },
+    { name: "jurisdiction", target: "jurisdiction/index" },
+    { name: "akad", target: "akad/index" },
+    { name: "reports", target: "reports/index" },
+    { name: "schemas", target: "schemas/index" }
   ];
 
   for (const mod of submodules) {

@@ -52,3 +52,82 @@ export {
   type MultiAssetPortfolioInput,
   type MultiAssetPortfolioResult
 } from './engine/calculator';
+
+// Oracle & FX Module
+export {
+  type PriceFeedQuote,
+  type FxQuote,
+  type PriceOracleAdapter,
+  type FxOracleAdapter,
+  type CurrencyInfo,
+  SUPPORTED_CURRENCIES,
+  isValidCurrency,
+  getCurrencyInfo,
+  StaticPriceOracle,
+  StaticFxOracle,
+  CachedOracle
+} from './oracle';
+
+// Multi-Currency Basket Module
+export {
+  type BasketAssetItem,
+  type BasketCalculationInput,
+  type ConvertedAssetBreakdown,
+  type BasketCalculationResult,
+  calculateMultiCurrencyBasketZakat
+} from './basket';
+
+// Hawl Lifecycle Module
+export {
+  type MadhhabHawlRule,
+  type LedgerSnapshot,
+  type HawlTrackerInput,
+  type HawlEvent,
+  type HawlTrackerResult,
+  trackHawlContinuity
+} from './hawl';
+
+// Jurisdiction & Madhhab Engine
+export {
+  type ClassicalMadhhab,
+  type HadKifayahInput,
+  type HadKifayahResult,
+  calculateMalaysiaIncomeZakat,
+  type SingaporeCpfZakatInput,
+  type SingaporeCpfZakatResult,
+  calculateSingaporeCpfZakat,
+  type SaudiZatcaCorporateInput,
+  type SaudiZatcaCorporateResult,
+  calculateSaudiZatcaCorporateZakat,
+  evaluateJewelryByMadhhab
+} from './jurisdiction';
+
+// Akad & Niat Generator
+export {
+  type ZakatPayerType,
+  type GenerateAkadInput,
+  type ZakatNiatText,
+  type ZakatQabulText,
+  type ZakatAkadPackage,
+  generateZakatAkad
+} from './akad';
+
+// Reports, Tax Deduction Slip & Asnaf Distribution
+export {
+  type TaxDeductionDetails,
+  type AsnafScheduleItem,
+  type ZakatCertificate,
+  generateZakatCertificate
+} from './reports';
+
+// Front-End Form Validation Schemas
+export {
+  type ValidationResult,
+  type FieldDescriptor,
+  validateGoldSilverForm,
+  validateIncomeForm,
+  validateCashSavingsForm,
+  validateBusinessForm,
+  validateCorporateForm,
+  GOLD_FORM_DESCRIPTORS
+} from './schemas';

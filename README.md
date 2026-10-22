@@ -8,7 +8,7 @@
 
 [![npm version](https://img.shields.io/npm/v/zakat-mal.svg?style=for-the-badge&color=2563eb&logo=npm)](https://www.npmjs.com/package/zakat-mal)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg?style=for-the-badge&logo=opensourceinitiative)](LICENSE)
-[![Build & Test](https://img.shields.io/badge/Tests-58%20Passed%20(100%25)-059669.svg?style=for-the-badge&logo=vitest)](https://github.com/codesbykhairannoor/zakat-mal)
+[![Build & Test](https://img.shields.io/badge/Tests-81%20Passed%20(100%25)-059669.svg?style=for-the-badge&logo=vitest)](https://github.com/codesbykhairannoor/zakat-mal)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x%20Strict-3178c6.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero-success.svg?style=for-the-badge)](#)
 [![Tree Shakeable](https://img.shields.io/badge/Bundle-Tree--Shakeable-7c3aed.svg?style=for-the-badge)](#)
@@ -371,6 +371,162 @@ const cryptoRes = calculateCryptoZakat({
   goldPricePerGram: 75,
   currency: 'USD'
 });
+```
+
+---
+
+## 🚀 Enterprise Fintech Modules (v1.1.0)
+
+`zakat-mal` includes 7 enterprise-grade modules designed specifically for banking portals, neobanks, amil institutions, and full-stack web applications.
+
+### 1. 🌐 Price & FX Oracle Engine (`zakat-mal/oracle`)
+
+Pluggable oracle layer with in-memory fallback, live API support, and TTL caching:
+
+```typescript
+import { StaticPriceOracle, StaticFxOracle, CachedOracle, isValidCurrency } from 'zakat-mal/oracle';
+
+const priceOracle = new StaticPriceOracle();
+const goldPrice = await priceOracle.fetchPrice('gold', 'IDR');
+console.log(goldPrice.pricePerUnit); // "1600000.00"
+
+const fxOracle = new StaticFxOracle();
+const rate = await fxOracle.fetchFxRate('USD', 'IDR');
+console.log(rate.rate); // "16200"
+```
+
+### 2. 🧺 Multi-Currency Asset Basket (`zakat-mal/basket`)
+
+Consolidates heterogeneous currencies into a base currency using the classical Fiqh principle of *Dhamm al-Amwal*:
+
+```typescript
+import { calculateMultiCurrencyBasketZakat } from 'zakat-mal/basket';
+
+const basket = await calculateMultiCurrencyBasketZakat({
+  targetCurrency: 'IDR',
+  assets: [
+    { name: 'US Cash', category: 'cash_savings', amount: 5000, currency: 'USD' },
+    { name: 'Local Savings', category: 'cash_savings', amount: 50000000, currency: 'IDR' },
+    { name: 'Saudi Account', category: 'cash_savings', amount: 10000, currency: 'SAR' }
+  ]
+});
+
+console.log(basket.totalZakatableBaseTargetCurrency); // "170000000.00" IDR
+console.log(basket.totalZakatDueTargetCurrency); // "4250000" IDR
+```
+
+### 3. ⏳ Hawl Lifecycle & Continuity Tracker (`zakat-mal/hawl`)
+
+Analyzes continuous multi-month bank balances against Nisab thresholds according to **Jumhur** (Shafi'i, Maliki, Hanbali) vs **Hanafi** jurisprudence:
+
+```typescript
+import { trackHawlContinuity } from 'zakat-mal/hawl';
+
+const hawl = trackHawlContinuity({
+  goldPricePerGram: 1600000, // 85g = Rp 136M nisab
+  currency: 'IDR',
+  madhhab: 'jumhur', // Dips below nisab restart hawl
+  ledger: [
+    { date: '2025-01-01', balance: 150000000 },
+    { date: '2025-06-01', balance: 160000000 },
+    { date: '2025-12-25', balance: 175000000 }
+  ]
+});
+
+console.log(hawl.status); // "matured"
+console.log(hawl.isZakatDueNow); // true
+console.log(hawl.percentCompleted); // "100.0%"
+```
+
+### 4. 🌍 Active Jurisdictions & Madhhab Engine (`zakat-mal/jurisdiction`)
+
+Provides certified regional rules for **Malaysia (PPZ Had Kifayah & KWSP)**, **Singapore (MUIS CPF)**, **Saudi Arabia (ZATCA Corporate)**, and **Classical Madhhabs**:
+
+```typescript
+import {
+  calculateMalaysiaIncomeZakat,
+  calculateSingaporeCpfZakat,
+  calculateSaudiZatcaCorporateZakat,
+  evaluateJewelryByMadhhab
+} from 'zakat-mal/jurisdiction';
+
+// Malaysia Had Kifayah (PPZ MAIWP)
+const myResult = calculateMalaysiaIncomeZakat({
+  grossAnnualIncome: 120000,
+  hasNonWorkingWife: true,
+  numSchoolChildren: 2,
+  annualEpfContribution: 13200
+});
+
+// Singapore CPF Retirement (MUIS)
+const sgResult = calculateSingaporeCpfZakat({
+  cpfWithdrawnAmount: 50000,
+  isAccountActiveOrLocked: false // Withdrawn at age 55
+});
+
+// Hanafi vs Jumhur Jewelry Ruling
+const jewelry = evaluateJewelryByMadhhab({
+  weightGrams: 100,
+  goldPricePerGram: 85,
+  isCustomaryPersonalAdornment: true,
+  madhhab: 'hanafi' // Always zakatable in Hanafi; exempt in Shafi'i
+});
+```
+
+### 5. 🤲 Lafadz Niat, Ijab & Qabul (Akad Zakat) Generator (`zakat-mal/akad`)
+
+Generates authenticated intention and receipt statements with Arabic, Latin transliteration, and translations for web checkout:
+
+```typescript
+import { generateZakatAkad } from 'zakat-mal/akad';
+
+const akad = generateZakatAkad({
+  category: 'income',
+  muzakkiName: 'Ahmad Khairan',
+  amount: '3750000',
+  currency: 'IDR',
+  locale: 'id'
+});
+
+console.log(akad.niat.arabic); // "نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي فَرْضًا لِلَّهِ تَعَالَى"
+console.log(akad.doaPenerima.arabic); // "آجَرَكَ اللَّهُ فِيمَا أَعْطَيْتَ..."
+```
+
+### 6. 📜 Zakat Audit Certificate & Tax Deduction Slip (`zakat-mal/reports`)
+
+Generates Bukti Setor Zakat (BSZ) compliant with Indonesian Law (UU 23/2011 Pasal 22), 8 Asnaf schedule (QS. At-Tawbah 9:60), and cryptographic verification checksum:
+
+```typescript
+import { generateZakatCertificate } from 'zakat-mal/reports';
+import { calculateGoldSilverZakat } from 'zakat-mal/gold-silver';
+
+const calc = calculateGoldSilverZakat({ goldGrams: 100, goldPricePerGram: 1600000 });
+const cert = generateZakatCertificate({
+  result: calc,
+  muzakkiName: 'Khairan Noor',
+  taxDetails: { taxIdNumber: '09.123.456.7-890.000', authorizedAmilName: 'BAZNAS' }
+});
+
+console.log(cert.certificateId); // "ZK-A8F4129B-C3E90124"
+const htmlReport = cert.toHtml(); // Formatted printable invoice with CSS print styling
+```
+
+### 7. 📋 Front-End Form Validation Schemas (`zakat-mal/schemas`)
+
+Zero-dependency validation helpers and field descriptors for React Hook Form, Formik, or Vue:
+
+```typescript
+import { validateGoldSilverForm, validateIncomeForm, GOLD_FORM_DESCRIPTORS } from 'zakat-mal/schemas';
+
+const validation = validateGoldSilverForm({
+  goldGrams: '100',
+  goldPurityKarat: '22',
+  goldPricePerGram: '1600000'
+});
+
+if (validation.isValid) {
+  console.log(validation.data); // Sanitized typed payload ready for calculation
+}
 ```
 
 ---
