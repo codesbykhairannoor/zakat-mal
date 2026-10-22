@@ -2,69 +2,131 @@
   "name": "zakat-mal",
   "version": "1.0.0",
   "description": "Authoritative, mathematically rigorous, and Fiqh-verified Zakat Mal calculation engine. Grounded in Al-Qur'an, Sahih Hadith, AAOIFI Shari'ah Standard No. 35, and Fatwa MUI/BAZNAS.",
+  "type": "commonjs",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./gold-silver": {
-      "types": "./dist/modules/gold-silver.d.ts",
-      "import": "./dist/modules/gold-silver.mjs",
-      "require": "./dist/modules/gold-silver.js"
+      "import": {
+        "types": "./dist/modules/gold-silver.d.mts",
+        "default": "./dist/modules/gold-silver.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/gold-silver.d.ts",
+        "default": "./dist/modules/gold-silver.js"
+      }
     },
     "./cash-savings": {
-      "types": "./dist/modules/cash-savings.d.ts",
-      "import": "./dist/modules/cash-savings.mjs",
-      "require": "./dist/modules/cash-savings.js"
+      "import": {
+        "types": "./dist/modules/cash-savings.d.mts",
+        "default": "./dist/modules/cash-savings.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/cash-savings.d.ts",
+        "default": "./dist/modules/cash-savings.js"
+      }
     },
     "./business": {
-      "types": "./dist/modules/business.d.ts",
-      "import": "./dist/modules/business.mjs",
-      "require": "./dist/modules/business.js"
+      "import": {
+        "types": "./dist/modules/business.d.mts",
+        "default": "./dist/modules/business.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/business.d.ts",
+        "default": "./dist/modules/business.js"
+      }
     },
     "./income": {
-      "types": "./dist/modules/income.d.ts",
-      "import": "./dist/modules/income.mjs",
-      "require": "./dist/modules/income.js"
+      "import": {
+        "types": "./dist/modules/income.d.mts",
+        "default": "./dist/modules/income.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/income.d.ts",
+        "default": "./dist/modules/income.js"
+      }
     },
     "./agriculture": {
-      "types": "./dist/modules/agriculture.d.ts",
-      "import": "./dist/modules/agriculture.mjs",
-      "require": "./dist/modules/agriculture.js"
+      "import": {
+        "types": "./dist/modules/agriculture.d.mts",
+        "default": "./dist/modules/agriculture.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/agriculture.d.ts",
+        "default": "./dist/modules/agriculture.js"
+      }
     },
     "./livestock": {
-      "types": "./dist/modules/livestock.d.ts",
-      "import": "./dist/modules/livestock.mjs",
-      "require": "./dist/modules/livestock.js"
+      "import": {
+        "types": "./dist/modules/livestock.d.mts",
+        "default": "./dist/modules/livestock.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/livestock.d.ts",
+        "default": "./dist/modules/livestock.js"
+      }
     },
     "./rikaz-mining": {
-      "types": "./dist/modules/rikaz-mining.d.ts",
-      "import": "./dist/modules/rikaz-mining.mjs",
-      "require": "./dist/modules/rikaz-mining.js"
+      "import": {
+        "types": "./dist/modules/rikaz-mining.d.mts",
+        "default": "./dist/modules/rikaz-mining.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/rikaz-mining.d.ts",
+        "default": "./dist/modules/rikaz-mining.js"
+      }
     },
     "./investments": {
-      "types": "./dist/modules/investments.d.ts",
-      "import": "./dist/modules/investments.mjs",
-      "require": "./dist/modules/investments.js"
+      "import": {
+        "types": "./dist/modules/investments.d.mts",
+        "default": "./dist/modules/investments.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/investments.d.ts",
+        "default": "./dist/modules/investments.js"
+      }
     },
     "./corporate": {
-      "types": "./dist/modules/corporate.d.ts",
-      "import": "./dist/modules/corporate.mjs",
-      "require": "./dist/modules/corporate.js"
+      "import": {
+        "types": "./dist/modules/corporate.d.mts",
+        "default": "./dist/modules/corporate.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/corporate.d.ts",
+        "default": "./dist/modules/corporate.js"
+      }
     },
     "./rental-yield": {
-      "types": "./dist/modules/rental-yield.d.ts",
-      "import": "./dist/modules/rental-yield.mjs",
-      "require": "./dist/modules/rental-yield.js"
+      "import": {
+        "types": "./dist/modules/rental-yield.d.mts",
+        "default": "./dist/modules/rental-yield.mjs"
+      },
+      "require": {
+        "types": "./dist/modules/rental-yield.d.ts",
+        "default": "./dist/modules/rental-yield.js"
+      }
     },
     "./dalil": {
-      "types": "./dist/dalil/index.d.ts",
-      "import": "./dist/dalil/index.mjs",
-      "require": "./dist/dalil/index.js"
+      "import": {
+        "types": "./dist/dalil/index.d.mts",
+        "default": "./dist/dalil/index.mjs"
+      },
+      "require": {
+        "types": "./dist/dalil/index.d.ts",
+        "default": "./dist/dalil/index.js"
+      }
     }
   },
   "bin": {
@@ -73,11 +135,13 @@
   "files": [
     "dist",
     "bin",
+    "*.js",
+    "*.d.ts",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup && tsc --emitDeclarationOnly",
+    "build": "tsup && tsc --emitDeclarationOnly && node scripts/build-mts.mjs",
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -112,7 +176,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codesbykhairannoor/zakat-mal.git"
+    "url": "git+https://github.com/codesbykhairannoor/zakat-mal.git"
   },
   "bugs": {
     "url": "https://github.com/codesbykhairannoor/zakat-mal/issues"
