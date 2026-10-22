@@ -130,7 +130,7 @@
     }
   },
   "bin": {
-    "zakat-mal": "./bin/zakat-mal.js"
+    "zakat-mal": "bin/zakat-mal.js"
   },
   "files": [
     "dist",
