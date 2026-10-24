@@ -277,7 +277,8 @@ function printResult(title: string, res: any, lang: Locale = 'en') {
   console.log(`${labelBase} : ${res.zakatableAmount}`);
   console.log(`${labelNisab} : ${res.nisabThreshold}`);
   console.log(`${labelRate} : ${res.rateApplied}`);
-  console.log(`${labelDue} : ${res.zakatDue} ${res.currency || ''}`);
+  const currencySuffix = (res.category === 'livestock' || !res.currency) ? '' : ` ${res.currency}`;
+  console.log(`${labelDue} : ${res.zakatDue}${currencySuffix}`);
 
   if (res.notes && res.notes.length > 0) {
     console.log(isId ? "\nCatatan Syar'i:" : isAr ? '\nملاحظات فقهية شرعية:' : '\nShariah Fiqh Notes:');
