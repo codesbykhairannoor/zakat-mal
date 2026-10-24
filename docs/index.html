@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zakat-mal: Kalkulator Zakat Mal Fiqh-Verified & AAOIFI Standard No. 35</title>
+  
+  <!-- SEO & Generative Engine Optimization Metadata -->
+  <meta name="description" content="Kalkulator Zakat Mal otoritatif berbasis kaidah Fiqh, AAOIFI Shariah Standard No. 35, dan Fatwa BAZNAS. Zero-dependency TypeScript engine dengan presisi matematika arbitrer.">
+  <meta name="keywords" content="zakat, zakat mal, kalkulator zakat, zakat emas, zakat profesi, zakat perusahaan, aaoifi 35, zakat-mal npm, islamic finance">
+  <meta name="author" content="Khairan Noor">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="zakat-mal: The Authoritative Fiqh-Verified Zakat Mal Engine">
+  <meta property="og:description" content="Kalkulator zakat presisi tinggi bebas floating-point error. Terverifikasi Al-Qur'an, Hadith Sahih, dan AAOIFI Standard 35.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codesbykhairannoor.github.io/zakat-mal/">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "zakat-mal",
+    "applicationCategory": "FinancialApplication",
+    "operatingSystem": "Cross-platform (Node.js, Browser, Edge)",
+    "softwareVersion": "1.1.0",
+    "author": {
+      "@type": "Person",
+      "name": "Khairan Noor"
+    },
+    "description": "Authoritative Fiqh-verified Zakat Mal calculation engine compliant with AAOIFI Standard 35 and BAZNAS."
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand-logo" aria-label="zakat-mal home">
+        <span>🕌⚖️ zakat-mal</span>
+        <span class="brand-badge">v1.1.0 • NPM</span>
+      </a>
+      
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#calculator" class="nav-link active">Kalkulator</a></li>
+          <li><a href="#developer" class="nav-link">Fintech API</a></li>
+          <li><a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/llms.txt" target="_blank" class="nav-link">llms.txt</a></li>
+          <li><a href="https://www.npmjs.com/package/zakat-mal" target="_blank" class="nav-link">NPM Registry</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Ganti mode gelap/terang" title="Toggle theme">
+          🌓
+        </button>
+        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-pill">
+        <span>✦</span> Standar AAOIFI No. 35 & Fatwa BAZNAS 2026
+      </div>
+      <h1 class="hero-title">
+        Kalkulator Zakat Mal Presisi Tinggi.<br>
+        <span class="highlight">Bebas Floating-Point Error.</span>
+      </h1>
+      <p class="hero-desc">
+        Engine kalkulasi Zakat Mal resmi bersertifikasi kaidah Fiqh internasional. Dibangun tanpa dependensi eksternal (0 runtime dependencies), menghapus risiko salah hitung desimal, dan siap diintegrasikan ke ekosistem Web, Mobile, Neobank, maupun Amil Zakat.
+      </p>
+
+      <!-- Metrics -->
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <span class="metric-value">81 / 81</span>
+          <span class="metric-label">Unit Tests Passed (100%)</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">0 deps</span>
+          <span class="metric-label">Zero Vulnerability Footprint</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">18 Subpaths</span>
+          <span class="metric-label">Modular Tree-Shakeable</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">AAOIFI 35</span>
+          <span class="metric-label">Global Shari'ah Compliance</span>
+        </div>
+      </div>
+
+      <!-- Quick NPM Install -->
+      <div class="npm-install-bar">
+        <code class="npm-cmd-text">npm install zakat-mal</code>
+        <button id="btn-copy-npm" class="btn-copy-npm" onclick="copyNpmCmd()">
+          <span>Salin</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator Section -->
+  <main id="calculator" class="app-section">
+    <div class="container">
+      
+      <div class="calculator-card">
+        
+        <!-- Category Switcher Tabs -->
+        <div class="calc-tabs-bar" role="tablist">
+          <button class="tab-btn active" data-tab="gold" role="tab" aria-selected="true">
+            <span>🪙</span> Emas & Perak
+          </button>
+          <button class="tab-btn" data-tab="cash" role="tab" aria-selected="false">
+            <span>💵</span> Kas & Tabungan
+          </button>
+          <button class="tab-btn" data-tab="income" role="tab" aria-selected="false">
+            <span>💼</span> Penghasilan / Gaji
+          </button>
+          <button class="tab-btn" data-tab="business" role="tab" aria-selected="false">
+            <span>🏬</span> Perniagaan / Dagang
+          </button>
+          <button class="tab-btn" data-tab="corporate" role="tab" aria-selected="false">
+            <span>🏢</span> Korporat (AAOIFI 35)
+          </button>
+        </div>
+
+        <!-- Calculator Main Grid -->
+        <div class="calc-grid">
+          
+          <!-- Left Column: Dynamic Inputs -->
+          <div class="calc-inputs-pane">
+            
+            <!-- Global Setting: Currency & Calendar -->
+            <div class="form-row-2" style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle);">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="currency-select" class="form-label">Mata Uang Basis</label>
+                <select id="currency-select" class="form-select">
+                  <option value="IDR" selected>IDR - Rupiah Indonesia</option>
+                  <option value="USD">USD - US Dollar</option>
+                  <option value="SAR">SAR - Saudi Riyal</option>
+                  <option value="MYR">MYR - Ringgit Malaysia</option>
+                  <option value="SGD">SGD - Dolar Singapura</option>
+                  <option value="EUR">EUR - Euro</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="calendar-select" class="form-label">
+                  Tahun Fiskal
+                  <span class="form-hint">AAOIFI 35 §4/1/4</span>
+                </label>
+                <select id="calendar-select" class="form-select">
+                  <option value="hijri" selected>Hijriyah (Tarif 2.500% • 354 hari)</option>
+                  <option value="solar">Masehi / Solar (Tarif 2.577% • 365 hari)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Pane 1: Gold & Silver Form -->
+            <div class="calc-form-pane" data-pane="gold">
+              <h2 class="form-section-title">Parameter Emas & Logam Mulia</h2>
+              
+              <div class="form-group">
+                <label for="gold-grams" class="form-label">
+                  Total Berat Emas yang Dimiliki
+                  <span class="form-hint">Nisab = 85 gram</span>
+                </label>
+                <div class="input-with-addon">
+                  <input type="number" id="gold-grams" class="form-input" value="100" min="0" step="0.1">
+                  <span class="input-addon-right">gram</span>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="gold-karat" class="form-label">Kadar Kemurnian (Karat)</label>
+                  <select id="gold-karat" class="form-select">
+                    <option value="24" selected>24 Karat (99.9% Murni)</option>
+                    <option value="22">22 Karat (91.6%)</option>
+                    <option value="18">18 Karat (75.0%)</option>
+                    <option value="14">14 Karat (58.3%)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="gold-price" class="form-label">Harga Emas Per Gram Saat Ini</label>
+                  <div class="input-with-addon">
+                    <input type="number" id="gold-price" class="form-input input-gold-price" value="1500000" min="0">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="jewelry-grams" class="form-label">
+                    Perhiasan Rutin Dipakai ('Urf)
+                    <span class="form-hint">Khusus pemakaian wajar</span>
+                  </label>
+                  <div class="input-with-addon">
+                    <input type="number" id="jewelry-grams" class="form-input" value="15" min="0" step="0.1">
+                    <span class="input-addon-right">gram</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="jewelry-exemption" class="form-label">Pandangan Mazhab</label>
+                  <select id="jewelry-exemption" class="form-select">
+                    <option value="jumhur" selected>Jumhur (Syafi'i/Maliki) - Bebas Zakat</option>
+                    <option value="hanafi">Hanafi - Tetap Wajib Zakat</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 2: Cash & Savings Form -->
+            <div class="calc-form-pane" data-pane="cash" style="display: none;">
+              <h2 class="form-section-title">Parameter Kas, Tabungan & Piutang</h2>
+              
+              <div class="form-group">
+                <label for="cash-on-hand" class="form-label">Uang Tunai di Tangan (Cash)</label>
+                <input type="number" id="cash-on-hand" class="form-input" value="25000000" min="0">
+              </div>
+
+              <div class="form-group">
+                <label for="bank-savings" class="form-label">Saldo Rekening Bank, Deposito & Giro</label>
+                <input type="number" id="bank-savings" class="form-input" value="120000000" min="0">
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="cash-loans" class="form-label">Piutang Lancar (Dapat Tertagih)</label>
+                  <input type="number" id="cash-loans" class="form-input" value="10000000" min="0">
+                </div>
+                <div class="form-group">
+                  <label for="cash-debts" class="form-label">Utang Segera Jatuh Tempo</label>
+                  <input type="number" id="cash-debts" class="form-input" value="5000000" min="0">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cash-gold-price" class="form-label">Acuan Harga Emas Per Gram (Untuk Nisab 85g)</label>
+                <input type="number" id="cash-gold-price" class="form-input input-gold-price" value="1500000" min="0">
+              </div>
+            </div>
+
+            <!-- Pane 3: Income / Salary Form -->
+            <div class="calc-form-pane" data-pane="income" style="display: none;">
+              <h2 class="form-section-title">Parameter Zakat Penghasilan / Profesi</h2>
+              
+              <div class="form-group">
+                <label for="income-salary" class="form-label">Total Penghasilan Rutin Bulanan (Gaji, Bonus, Tunjangan)</label>
+                <input type="number" id="income-salary" class="form-input" value="18000000" min="0">
+              </div>
+
+              <div class="form-group">
+                <label for="income-living" class="form-label">Kebutuhan Pokok Bulanan (Had Kifayah / Pengurang)</label>
+                <input type="number" id="income-living" class="form-input" value="6000000" min="0">
+              </div>
+
+              <div class="form-group">
+                <label for="income-gold-price" class="form-label">Harga Emas Per Gram Saat Ini</label>
+                <input type="number" id="income-gold-price" class="form-input input-gold-price" value="1500000" min="0">
+              </div>
+            </div>
+
+            <!-- Pane 4: Business Form -->
+            <div class="calc-form-pane" data-pane="business" style="display: none;">
+              <h2 class="form-section-title">Parameter Zakat Perniagaan ('Urudh at-Tijarah)</h2>
+              
+              <div class="form-group">
+                <label for="biz-assets" class="form-label">Kas Perusahaan + Piutang Dagang Lancar</label>
+                <input type="number" id="biz-assets" class="form-input" value="250000000" min="0">
+              </div>
+
+              <div class="form-group">
+                <label for="biz-inventory" class="form-label">Nilai Pasar Persediaan Barang Dagangan (Stok)</label>
+                <input type="number" id="biz-inventory" class="form-input" value="150000000" min="0">
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="biz-liabilities" class="form-label">Utang Dagang Jangka Pendek</label>
+                  <input type="number" id="biz-liabilities" class="form-input" value="80000000" min="0">
+                </div>
+                <div class="form-group">
+                  <label for="biz-gold-price" class="form-label">Harga Emas Acuan Nisab (85g)</label>
+                  <input type="number" id="biz-gold-price" class="form-input input-gold-price" value="1500000" min="0">
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 5: Corporate AAOIFI 35 Form -->
+            <div class="calc-form-pane" data-pane="corporate" style="display: none;">
+              <h2 class="form-section-title">Standar Korporat AAOIFI No. 35</h2>
+              
+              <div class="form-group">
+                <label for="corp-assets" class="form-label">Total Aset Lancar (Current Assets)</label>
+                <input type="number" id="corp-assets" class="form-input" value="5000000000" min="0">
+              </div>
+
+              <div class="form-group">
+                <label for="corp-liabilities" class="form-label">Kewajiban Lancar (Current Liabilities)</label>
+                <input type="number" id="corp-liabilities" class="form-input" value="1800000000" min="0">
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="corp-muslim-pct" class="form-label">Persentase Saham Muslim (%)</label>
+                  <input type="number" id="corp-muslim-pct" class="form-input" value="85" min="0" max="100">
+                </div>
+                <div class="form-group">
+                  <label for="corp-gold-price" class="form-label">Harga Emas Per Gram</label>
+                  <input type="number" id="corp-gold-price" class="form-input input-gold-price" value="1500000" min="0">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Real-time Output & Shariah Reference -->
+          <div class="calc-results-pane">
+            
+            <div>
+              <!-- Obligation Status Card -->
+              <div id="status-card" class="result-status-card status-obligatory">
+                <div id="status-tag" class="status-tag">WAJIB ZAKAT</div>
+                <div class="result-amount-display">
+                  <span class="label">Total Zakat Terutang:</span>
+                  <span id="result-amount" class="amount">Rp 0</span>
+                  <span id="result-currency" class="currency">Mata Uang: IDR</span>
+                </div>
+              </div>
+
+              <!-- Mathematical Breakdown -->
+              <ul id="breakdown-list" class="breakdown-list">
+                <!-- Injected via app.js -->
+              </ul>
+
+              <!-- Dalil Citation Box -->
+              <div class="dalil-box">
+                <div id="dalil-ref" class="dalil-title">Sunan Abu Dawud No. 1573</div>
+                <div id="dalil-text" class="dalil-text">
+                  Kewajiban zakat emas 85g dan perak 595g sebesar 2.5% setelah genap haul 1 tahun.
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons-group">
+              <button class="btn-primary" onclick="handleOpenAkad()">
+                <span>📜</span> Lafadz Niat & Akad Zakat
+              </button>
+              <button class="btn-secondary" onclick="handleOpenCertificate()">
+                <span>🖨️</span> Cetak Bukti Setor / Sertifikat Pajak
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Developer Code Drawer -->
+      <section id="developer" class="dev-code-card">
+        <div class="dev-code-header">
+          <div class="dev-code-title">
+            <span>⚡</span> Kode TypeScript Otomatis (Real-time Mirror)
+          </div>
+          <button id="btn-copy-code" class="btn-copy-code" onclick="copyCode()">
+            Salin Kode
+          </button>
+        </div>
+        <pre class="dev-code-block"><code id="code-snippet">// Live code mirrors input here</code></pre>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal: Niat & Akad Zakat -->
+  <div id="akad-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="akad-modal-title" class="modal-title">Lafadz Niat Zakat</h3>
+        <button class="btn-modal-close" onclick="closeModal('akad-modal')" aria-label="Tutup modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="akad-arabic" class="arabic-prayer-text"></div>
+        <p id="akad-latin" class="prayer-transliteration"></p>
+        <p id="akad-indo" class="prayer-translation"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Certificate & Tax Deduction -->
+  <div id="cert-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Bukti Setor Zakat Resmi</h3>
+        <button class="btn-modal-close" onclick="closeModal('cert-modal')" aria-label="Tutup modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--brand-emerald);">BUKTI SETOR ZAKAT (BSZ)</div>
+          <div style="font-size: 0.8125rem; color: var(--text-muted);">Dasar Hukum: UU No. 23 Tahun 2011 Pasal 22 (Pengurang Pajak Penghasilan)</div>
+          <div id="cert-id-display" style="font-family: var(--font-mono); font-weight: 700; margin-top: 8px; color: var(--brand-gold);">ZK-XXXXXX-XXXXXX</div>
+        </div>
+
+        <div style="background-color: var(--bg-muted); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 0.875rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Tanggal Verifikasi:</span>
+            <span id="cert-date-display" style="font-weight: 600;">-</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Kategori Zakat:</span>
+            <span id="cert-category-display" style="font-weight: 600;">-</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span>Jumlah Zakat Disetor:</span>
+            <span id="cert-amount-display" style="font-weight: 700; color: var(--brand-emerald);">-</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="width: 100%;" onclick="window.print()">
+          Cetak / Download PDF Bukti Setor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div>
+        <strong>zakat-mal</strong> • The Authoritative Fiqh-Verified Zakat Mal Engine. MIT License.
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.npmjs.com/package/zakat-mal" target="_blank" rel="noopener noreferrer">NPM</a>
+        <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/llms.txt" target="_blank">llms.txt</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

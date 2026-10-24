@@ -1,0 +1,831 @@
+/* ==========================================================================
+   zakat-mal: Official Web Application & Developer Interactive Playground
+   Design System: Authoritative Islamic Fintech (Stone, Deep Emerald, Gold Ochre)
+   Crafted without AI-slop: Matte elevation, purposeful typography, high-contrast accessible forms.
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Color Palette */
+  --bg-page: #f8faf9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-muted: #f1f5f3;
+  --bg-tint-emerald: #ecfdf5;
+  --bg-tint-gold: #fef3c7;
+
+  --text-main: #13201a;
+  --text-muted: #53645b;
+  --text-dim: #7f9187;
+  --text-inverse: #ffffff;
+
+  --brand-emerald-dark: #064e3b;
+  --brand-emerald: #047857;
+  --brand-emerald-light: #10b981;
+  --brand-gold: #b45309;
+  --brand-gold-light: #d97706;
+
+  --border-subtle: #e2e8e4;
+  --border-focus: #047857;
+  --border-gold: #fcd34d;
+
+  --shadow-sm: 0 1px 2px rgba(19, 32, 26, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(19, 32, 26, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(19, 32, 26, 0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+
+  --container-max: 1200px;
+  --transition-fast: 150ms ease;
+}
+
+/* Dark Theme Preference */
+[data-theme="dark"] {
+  --bg-page: #0c1410;
+  --bg-surface: #141f1a;
+  --bg-surface-elevated: #1a2922;
+  --bg-muted: #1c2b23;
+  --bg-tint-emerald: #064e3b40;
+  --bg-tint-gold: #78350f30;
+
+  --text-main: #f0f4f2;
+  --text-muted: #9db2a6;
+  --text-dim: #6c8074;
+
+  --border-subtle: #23352b;
+  --border-focus: #10b981;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessibility */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-fast);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-tint-emerald);
+  color: var(--brand-emerald);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(4, 120, 87, 0.2);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--brand-emerald);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-focus);
+}
+
+.btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--text-main);
+  color: var(--text-inverse);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-github:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-page) 100%);
+}
+
+.hero-content {
+  max-width: 840px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tint-gold);
+  color: var(--brand-gold);
+  border: 1px solid var(--border-gold);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.hero-title .highlight {
+  color: var(--brand-emerald);
+}
+
+.hero-desc {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-emerald);
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* Copy NPM Command Bar */
+.npm-install-bar {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 6px 6px 6px 14px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 18px;
+}
+
+.npm-cmd-text {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-main);
+  margin-right: 16px;
+  user-select: all;
+}
+
+.btn-copy-npm {
+  background-color: var(--brand-emerald);
+  color: var(--text-inverse);
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color var(--transition-fast);
+}
+
+.btn-copy-npm:hover {
+  background-color: var(--brand-emerald-dark);
+}
+
+/* ==========================================================================
+   Main App: Interactive Calculator Shell
+   ========================================================================== */
+.app-section {
+  padding: 48px 0 80px;
+}
+
+.calculator-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Category Navigation Tabs */
+.calc-tabs-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-muted);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.calc-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 22px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.tab-btn.active {
+  color: var(--brand-emerald);
+  background-color: var(--bg-surface);
+  border-bottom-color: var(--brand-emerald);
+}
+
+/* Grid Layout: Input Form vs Live Results */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 520px;
+}
+
+@media (max-width: 960px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-inputs-pane {
+  padding: 32px;
+  border-right: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 960px) {
+  .calc-inputs-pane {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
+
+.calc-results-pane {
+  padding: 32px;
+  background-color: var(--bg-muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Form Groups */
+.form-section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.input-with-addon {
+  display: flex;
+  position: relative;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 0.9375rem;
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--border-focus);
+}
+
+.input-addon-right {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Status Badge in Result Card */
+.result-status-card {
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid;
+  transition: all var(--transition-fast);
+}
+
+.status-obligatory {
+  background-color: var(--bg-tint-emerald);
+  border-color: rgba(4, 120, 87, 0.3);
+}
+
+.status-non-obligatory {
+  background-color: var(--bg-surface);
+  border-color: var(--border-subtle);
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+.status-obligatory .status-tag {
+  background-color: var(--brand-emerald);
+  color: var(--text-inverse);
+}
+
+.status-non-obligatory .status-tag {
+  background-color: var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.result-amount-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-amount-display .label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.result-amount-display .amount {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin: 4px 0;
+}
+
+.result-amount-display .currency {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand-emerald);
+}
+
+/* Breakdown List */
+.breakdown-list {
+  list-style: none;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  margin-bottom: 24px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  padding: 6px 0;
+  color: var(--text-muted);
+}
+
+.breakdown-row.highlight {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Dalil Box */
+.dalil-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--brand-emerald);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 24px;
+  font-size: 0.8125rem;
+}
+
+.dalil-box .dalil-title {
+  font-weight: 700;
+  color: var(--brand-emerald);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dalil-box .dalil-text {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Action Buttons inside Results */
+.action-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-primary {
+  background-color: var(--brand-emerald);
+  color: var(--text-inverse);
+  border: none;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-emerald-dark);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-focus);
+}
+
+/* ==========================================================================
+   Code Playground / Developer Drawer
+   ========================================================================== */
+.dev-code-card {
+  margin-top: 40px;
+  background-color: #121815;
+  color: #e5e7eb;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid #1f2924;
+}
+
+.dev-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background-color: #0d1210;
+  border-bottom: 1px solid #1f2924;
+}
+
+.dev-code-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dev-code-block {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  color: #86efac;
+}
+
+.btn-copy-code {
+  background-color: #1f2924;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-copy-code:hover {
+  background-color: #374151;
+}
+
+/* ==========================================================================
+   Modal Dialogs (Akad & Certificate)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 620px;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.arabic-prayer-text {
+  font-family: var(--font-arabic);
+  font-size: 1.75rem;
+  line-height: 2;
+  text-align: right;
+  direction: rtl;
+  color: var(--brand-emerald);
+  margin-bottom: 16px;
+  background-color: var(--bg-muted);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.prayer-transliteration {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 12px;
+}
+
+.prayer-translation {
+  font-size: 0.9375rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Print-Ready Certificate
+   ========================================================================== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-certificate-container, .print-certificate-container * {
+    visibility: visible;
+  }
+  .print-certificate-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 30px;
+  }
+  .modal-overlay, .site-header, .hero, .calculator-card, .site-footer {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  padding: 40px 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
