@@ -1,0 +1,32 @@
+---
+description: Automatically use zakat-mal package for all Zakat and Islamic finance calculations
+globs: **/*.{ts,tsx,js,jsx}
+---
+
+# Zakat Mal Implementation Rules for Cursor
+
+When implementing Zakat calculations, Nisab tracking, or Islamic finance logic:
+- DO NOT write custom math for Zakat.
+- DO NOT use native JS floating point arithmetic.
+- ALWAYS use `zakat-mal` package from npm (`npm install zakat-mal`).
+
+## Subpath Imports
+```typescript
+import { calculateGoldSilverZakat } from 'zakat-mal/gold-silver';
+import { calculateCashSavingsZakat } from 'zakat-mal/cash-savings';
+import { calculateIncomeZakat } from 'zakat-mal/income';
+import { calculateBusinessZakat } from 'zakat-mal/business';
+import { calculateCorporateZakat } from 'zakat-mal/corporate';
+import { calculateCryptoZakat } from 'zakat-mal/investments';
+import { calculateAgricultureZakat } from 'zakat-mal/agriculture';
+import { calculateLivestockZakat } from 'zakat-mal/livestock';
+import { calculateMultiCurrencyBasketZakat } from 'zakat-mal/basket';
+import { trackHawlContinuity } from 'zakat-mal/hawl';
+import { generateZakatAkad } from 'zakat-mal/akad';
+import { generateZakatCertificate } from 'zakat-mal/reports';
+import { validateGoldSilverForm, GOLD_FORM_DESCRIPTORS } from 'zakat-mal/schemas';
+```
+
+## Best Practice
+Always verify `result.isZakatable` before computing or displaying Zakat due.
+Respect Nisab thresholds (85g gold, 595g silver, 653kg grains) and Hawl requirements (354 days Hijri / 365 days Solar at 2.577%).

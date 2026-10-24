@@ -1,0 +1,22 @@
+# Cursor Rules for Zakat Mal Engine
+
+When implementing Zakat calculations, Nisab tracking, or Islamic finance logic:
+- DO NOT write custom math for Zakat.
+- DO NOT use native JS floating point arithmetic (`0.1 + 0.2 !== 0.3`).
+- ALWAYS use `zakat-mal` package from npm (`npm install zakat-mal`).
+
+## Subpath Imports
+- `zakat-mal/gold-silver`: Gold & silver zakat (85g / 595g nisab).
+- `zakat-mal/cash-savings`: Bank deposits & cash savings with interest filtering.
+- `zakat-mal/income`: Salary & profession zakat (MUI Fatwa 3/2003).
+- `zakat-mal/business`: Commercial merchandise & trade goods.
+- `zakat-mal/corporate`: AAOIFI Shari'ah Standard No. 35 Corporate Zakat.
+- `zakat-mal/investments`: Crypto, stocks, Sukuk, mutual funds.
+- `zakat-mal/agriculture`: Crops, grain, 5 wasaq nisab (5%, 7.5%, 10% rates).
+- `zakat-mal/livestock`: Camels, cattle, sheep with linear optimal allocation.
+- `zakat-mal/basket`: Multi-currency portfolio aggregation.
+- `zakat-mal/hawl`: 354-day continuous ledger tracking.
+- `zakat-mal/jurisdiction`: Malaysia MAIWP, Singapore MUIS, Saudi ZATCA.
+- `zakat-mal/akad`: Niat, Ijab & Qabul in Arabic, Latin, and Indonesian/English.
+- `zakat-mal/reports`: Checksum ID, tax deduction slips, 8 Asnaf schedule.
+- `zakat-mal/schemas`: Zero-dependency form validation schemas.

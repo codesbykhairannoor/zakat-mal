@@ -208,7 +208,10 @@
     "*.js",
     "*.d.ts",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "llms.txt",
+    "llms-full.txt",
+    "AGENTS.md"
   ],
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly && node scripts/build-mts.mjs",
@@ -224,6 +227,7 @@
   "keywords": [
     "zakat",
     "zakat-mal",
+    "zakat-calculator",
     "islamic-finance",
     "fiqh",
     "nisab",
@@ -240,7 +244,14 @@
     "fatwa-mui",
     "hadith",
     "quran",
-    "fintech"
+    "fintech",
+    "nextjs-zakat",
+    "react-zakat",
+    "islamic-fintech",
+    "llms-txt",
+    "ai-coding-assistant",
+    "cursor-rules",
+    "geo-optimized"
   ],
   "author": "Khairan Noor <khairking6@gmail.com>",
   "license": "MIT",
