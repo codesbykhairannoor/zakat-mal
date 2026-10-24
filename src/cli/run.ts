@@ -259,25 +259,36 @@ export function runCli(argv = process.argv.slice(2)) {
 
 function printResult(title: string, res: any, lang: Locale = 'en') {
   console.log(`--- [ ${title} ] ---`);
-  const statusStr = res.isObligatory
-    ? (lang === 'id' ? 'WAJIB ZAKAT (Mencapai Nisab & Haul)' : lang === 'ar' ? 'واجبة الزكاة (بلغت النصاب وحال الحول)' : 'OBLIGATORY / WAJIB ZAKAT (Nisab & Hawl Reached)')
-    : (lang === 'id' ? 'BELUM WAJIB ZAKAT' : lang === 'ar' ? 'غير واجبة الزكاة' : 'NOT OBLIGATORY / BELUM WAJIB ZAKAT');
+  const isEn = lang === 'en';
+  const isId = lang === 'id';
+  const isAr = lang === 'ar';
 
-  console.log(`Status / Status Kewajiban : ${statusStr}`);
-  console.log(`Zakatable Base / Basis    : ${res.zakatableAmount}`);
-  console.log(`Nisab Threshold / Batas   : ${res.nisabThreshold}`);
-  console.log(`Rate Applied / Tarif      : ${res.rateApplied}`);
-  console.log(`Zakat Due / Terutang      : ${res.zakatDue} ${res.currency || ''}`);
+  const statusStr = res.isObligatory
+    ? (isId ? 'WAJIB ZAKAT (Mencapai Nisab & Haul)' : isAr ? 'واجبة الزكاة (بلغت النصاب وحال الحول)' : 'OBLIGATORY (Nisab & Hawl Reached)')
+    : (isId ? 'BELUM WAJIB ZAKAT' : isAr ? 'غير واجبة الزكاة' : 'NOT OBLIGATORY (Below Nisab or Hawl)');
+
+  const labelStatus = isId ? 'Status Kewajiban' : isAr ? 'حكم الوجوب      ' : 'Obligation Status';
+  const labelBase   = isId ? 'Basis Zakat     ' : isAr ? 'الوعاء الزكوي   ' : 'Zakatable Base   ';
+  const labelNisab  = isId ? 'Batas Nisab     ' : isAr ? 'حد النصاب       ' : 'Nisab Threshold  ';
+  const labelRate   = isId ? 'Tarif Zakat     ' : isAr ? 'نسبة الزكاة     ' : 'Applied Rate     ';
+  const labelDue    = isId ? 'Zakat Terutang  ' : isAr ? 'الزكاة الواجبة   ' : 'Zakat Due        ';
+
+  console.log(`${labelStatus} : ${statusStr}`);
+  console.log(`${labelBase} : ${res.zakatableAmount}`);
+  console.log(`${labelNisab} : ${res.nisabThreshold}`);
+  console.log(`${labelRate} : ${res.rateApplied}`);
+  console.log(`${labelDue} : ${res.zakatDue} ${res.currency || ''}`);
 
   if (res.notes && res.notes.length > 0) {
-    console.log(lang === 'id' ? '\nCatatan Syar\'i:' : '\nShariah Fiqh Notes:');
+    console.log(isId ? "\nCatatan Syar'i:" : isAr ? '\nملاحظات فقهية شرعية:' : '\nShariah Fiqh Notes:');
     res.notes.forEach((n: string) => console.log(`  * ${n}`));
   }
 
   if (res.dalilReferences && res.dalilReferences.length > 0) {
-    console.log(lang === 'id' ? '\nDalil & Rujukan Utama:' : '\nKey Shariah References:');
+    console.log(isId ? '\nDalil & Rujukan Utama:' : isAr ? '\nالأدلة والمراجع الشرعية:' : '\nKey Shariah References:');
     res.dalilReferences.forEach((d: any) => {
-      console.log(`  * [${d.source}] ${d.title}`);
+      const dTitle = (isEn && d.titleEn) ? d.titleEn : d.title;
+      console.log(`  * [${d.source}] ${dTitle}`);
     });
   }
   console.log('\n');
@@ -285,7 +296,8 @@ function printResult(title: string, res: any, lang: Locale = 'en') {
 
 function printDalils(dalils: any[], lang: Locale = 'en') {
   dalils.forEach((d, idx) => {
-    console.log(`${idx + 1}. [${d.source}] - ${d.title}`);
+    const dTitle = (lang === 'en' && d.titleEn) ? d.titleEn : d.title;
+    console.log(`${idx + 1}. [${d.source}] - ${dTitle}`);
     console.log(`   Arabic : ${d.arabicText}`);
     if (lang === 'id') {
       console.log(`   ID     : ${d.translationId}`);

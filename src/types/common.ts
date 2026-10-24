@@ -28,6 +28,7 @@ export interface DalilReference {
   id: string;
   category: 'quran' | 'hadith' | 'aaoifi' | 'contemporary_fatwa';
   title: string;
+  titleEn?: string;
   source: string;
   arabicText: string;
   transliteration?: string;
