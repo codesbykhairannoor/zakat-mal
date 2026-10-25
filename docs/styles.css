@@ -1,7 +1,7 @@
 /* ==========================================================================
    zakat-mal: Next-Gen Islamic FinTech Design System
    Crafted with Obsidian Glassmorphism, Emerald Glow & Champagne Gold Accents
-   100% Mobile Responsive • Zero Layout Shifts • Accessible & Touch-Optimized
+   100% Mobile Responsive • Touch-Optimized • Zero Layout Shifts
    ========================================================================== */
 
 :root {
@@ -143,14 +143,14 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 10, 9, 0.85);
+  background: rgba(7, 10, 9, 0.88);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   transition: background-color var(--transition-smooth);
 }
 
 [data-theme="light"] .site-header {
-  background: rgba(248, 250, 249, 0.88);
+  background: rgba(248, 250, 249, 0.92);
 }
 
 .nav-wrap {
@@ -158,7 +158,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 72px;
-  gap: 20px;
+  gap: 16px;
 }
 
 .brand-logo {
@@ -170,6 +170,7 @@ body {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 .brand-version {
@@ -185,7 +186,7 @@ body {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
 }
 
 .nav-link {
@@ -204,7 +205,8 @@ body {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn-theme-toggle {
@@ -247,11 +249,103 @@ body {
   transform: translateY(-1px);
 }
 
+/* Mobile Hamburger Toggle */
+.btn-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 8px;
+  transition: all var(--transition-smooth);
+}
+
+.btn-mobile-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: all var(--transition-smooth);
+}
+
+.btn-mobile-toggle.active .bar-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+.btn-mobile-toggle.active .bar-2 {
+  opacity: 0;
+}
+.btn-mobile-toggle.active .bar-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  display: none;
+  background: rgba(7, 10, 9, 0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 24px 24px;
+  animation: slideDown 250ms ease-in-out;
+}
+
+[data-theme="light"] .mobile-drawer {
+  background: rgba(248, 250, 249, 0.98);
+}
+
+.mobile-drawer.open {
+  display: block;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-smooth);
+}
+
+.mobile-link:hover,
+.mobile-link:active {
+  background: var(--bg-surface-elevated);
+  border-color: var(--brand-emerald);
+  color: var(--brand-emerald);
+}
+
+.mobile-link.github-highlight {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--brand-emerald);
+}
+
 /* ==========================================================================
    Hero Section
    ========================================================================== */
 .hero-section {
-  padding: 80px 0 50px;
+  padding: 70px 0 50px;
   text-align: center;
   position: relative;
 }
@@ -395,6 +489,43 @@ body {
 }
 
 /* ==========================================================================
+   Section Headers (Reusable)
+   ========================================================================== */
+.section-header-centered {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 50px;
+}
+
+.pill-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--brand-emerald);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.section-subtext {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
    Calculator Section & Cards
    ========================================================================== */
 .calc-section {
@@ -509,7 +640,6 @@ body {
   align-items: start;
 }
 
-/* Form Styles */
 .form-container {
   min-width: 0;
 }
@@ -666,9 +796,7 @@ body {
   padding-left: 36px;
 }
 
-/* ==========================================================================
-   Results Column
-   ========================================================================== */
+/* Results Column */
 .result-container {
   position: sticky;
   top: 96px;
@@ -840,14 +968,245 @@ body {
 }
 
 /* ==========================================================================
-   SDK Live Mirror & Code Block
+   Section: Features / Architectural Pillars
    ========================================================================== */
-.code-mirror-section {
-  margin-top: 48px;
+.features-section {
+  padding: 60px 0 80px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  padding: 32px;
+  transition: all var(--transition-smooth);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-active);
+}
+
+.feature-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-icon-wrap.emerald {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.feature-icon-wrap.gold {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.feature-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.feature-card-desc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.feature-card-desc code {
+  background: var(--bg-surface);
+  color: var(--brand-emerald);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+/* ==========================================================================
+   Section: Shariah Dalil Database
+   ========================================================================== */
+.dalils-section {
+  padding: 60px 0 80px;
+}
+
+.dalil-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.dalil-filter-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.dalil-filter-btn:hover {
+  color: var(--text-main);
+  background: var(--bg-surface-elevated);
+}
+
+.dalil-filter-btn.active {
+  background: var(--brand-emerald);
+  color: var(--text-inverse);
+  border-color: var(--brand-emerald);
+}
+
+.dalils-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.dalil-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dalil-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.dalil-source-tag {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--brand-emerald);
+}
+
+.dalil-grade-tag {
+  font-size: 0.6875rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--brand-gold);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.dalil-card-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.dalil-arabic-text {
+  font-family: var(--font-arabic);
+  font-size: 1.375rem;
+  line-height: 2;
+  text-align: right;
+  direction: rtl;
+  color: var(--brand-emerald);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.dalil-translation {
+  font-size: 0.875rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.dalil-relevance {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Section: Multi-Jurisdictions
+   ========================================================================== */
+.jurisdictions-section {
+  padding: 60px 0 80px;
+}
+
+.jurisdiction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.jurisdiction-card {
+  padding: 28px;
+  transition: all var(--transition-smooth);
+}
+
+.jurisdiction-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-active);
+}
+
+.jurisdiction-flag {
+  font-size: 2.25rem;
+  margin-bottom: 16px;
+}
+
+.jurisdiction-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.jurisdiction-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.jurisdiction-code {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--brand-emerald);
+}
+
+/* ==========================================================================
+   Section: Developer SDK
+   ========================================================================== */
+.dev-section {
+  padding: 60px 0 80px;
 }
 
 .code-mirror-card {
   overflow: hidden;
+  margin-bottom: 50px;
 }
 
 .code-topbar {
@@ -909,6 +1268,114 @@ body {
   line-height: 1.6;
   overflow-x: auto;
   color: #34d399;
+}
+
+.subpath-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.subpath-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.subpath-sub {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.subpath-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.subpath-pill {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  transition: all var(--transition-smooth);
+}
+
+.subpath-pill:hover {
+  border-color: var(--brand-emerald);
+  color: var(--brand-emerald);
+}
+
+/* ==========================================================================
+   Section: FAQ
+   ========================================================================== */
+.faq-section {
+  padding: 60px 0 100px;
+}
+
+.faq-container {
+  max-width: 860px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.faq-question {
+  padding: 20px 24px;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: '＋';
+  font-size: 1.25rem;
+  color: var(--brand-emerald);
+  font-family: monospace;
+  transition: transform var(--transition-smooth);
+}
+
+.faq-item[open] .faq-question::after {
+  content: '—';
+}
+
+.faq-answer {
+  padding: 0 24px 20px;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.faq-answer code {
+  background: var(--bg-surface);
+  color: var(--brand-emerald);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
 }
 
 /* ==========================================================================
@@ -1193,7 +1660,7 @@ body {
 .site-footer {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-panel);
-  padding: 50px 0;
+  padding: 60px 0 40px;
   font-size: 0.875rem;
   color: var(--text-muted);
 }
@@ -1201,37 +1668,55 @@ body {
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 36px;
+}
+
+.footer-brand {
+  max-width: 380px;
 }
 
 .footer-logo {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--text-main);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .footer-tagline {
-  max-width: 480px;
   line-height: 1.6;
 }
 
 .footer-links-grid {
   display: flex;
-  gap: 24px;
+  gap: 48px;
   flex-wrap: wrap;
 }
 
-.footer-links-grid a {
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.footer-col a {
   color: var(--text-muted);
   text-decoration: none;
   transition: color var(--transition-smooth);
 }
 
-.footer-links-grid a:hover {
+.footer-col a:hover {
   color: var(--brand-emerald);
 }
 
@@ -1249,6 +1734,14 @@ body {
   .result-container {
     position: static;
   }
+  .features-grid,
+  .dalils-grid,
+  .jurisdiction-grid {
+    grid-template-columns: 1fr;
+  }
+  .subpath-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1256,7 +1749,16 @@ body {
     height: 64px;
   }
   .nav-menu {
-    display: none; /* Keep clean on small mobile */
+    display: none; /* Replaced by mobile drawer */
+  }
+  .btn-mobile-toggle {
+    display: flex; /* Show hamburger button */
+  }
+  .btn-github-text {
+    display: none; /* Hide long text on mobile, keep clean GitHub icon */
+  }
+  .btn-github {
+    padding: 8px 10px;
   }
   .hero-section {
     padding: 50px 0 30px;
@@ -1301,7 +1803,13 @@ body {
     display: block;
   }
   body {
-    padding-bottom: 70px; /* Space for mobile sticky bar */
+    padding-bottom: 70px;
+  }
+  .subpath-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-links-grid {
+    gap: 32px;
   }
 }
 
@@ -1338,6 +1846,11 @@ body {
   .site-header,
   .hero-section,
   .calc-section,
+  .features-section,
+  .dalils-section,
+  .jurisdictions-section,
+  .dev-section,
+  .faq-section,
   .site-footer,
   .ambient-glow,
   .mobile-sticky-bar {

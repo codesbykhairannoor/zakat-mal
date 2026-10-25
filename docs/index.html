@@ -6,7 +6,7 @@
   <title>zakat-mal • Authoritative Fiqh-Verified Zakat Mal Calculation Engine</title>
   
   <!-- SEO & Generative Engine Optimization Metadata -->
-  <meta name="description" content="Authoritative, zero-dependency, Fiqh-verified Zakat Mal calculation engine. Grounded in Quran, Sahih Hadith, AAOIFI Shari'ah Standard No. 35, and Global Fiqh Bodies.">
+  <meta name="description" content="Authoritative, zero-dependency, Fiqh-verified Zakat Mal calculation engine. Compliant with Al-Qur'an, Sahih Hadith, AAOIFI Shari'ah Standard No. 35, and global Fiqh bodies.">
   <meta name="keywords" content="zakat, zakat mal, zakat calculator, gold zakat, corporate zakat, income zakat, crypto zakat, aaoifi 35, islamic finance, typescript zakat engine, npm zakat-mal">
   <meta name="author" content="Khairan Noor">
   
@@ -57,22 +57,59 @@
         <span class="brand-version">v1.1.0</span>
       </a>
       
+      <!-- Desktop Navigation Menu (No llms.txt, clean product links) -->
       <nav class="nav-menu" aria-label="Main Navigation">
         <a href="#calculator" class="nav-link active">Calculator</a>
+        <a href="#features" class="nav-link">Why zakat-mal?</a>
+        <a href="#dalils" class="nav-link">Shariah Dalils</a>
+        <a href="#jurisdictions" class="nav-link">Jurisdictions</a>
         <a href="#developer" class="nav-link">SDK & API</a>
-        <a href="#dalils" class="nav-link">Dalil Database</a>
-        <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/llms.txt" target="_blank" rel="noopener noreferrer" class="nav-link">llms.txt</a>
+        <a href="#faq" class="nav-link">FAQ</a>
       </nav>
       
       <div class="nav-actions">
         <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
           <span class="theme-icon">🌓</span>
         </button>
-        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer" class="btn-github">
+        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer" class="btn-github" aria-label="GitHub repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
-          <span>Star on GitHub</span>
+          <span class="btn-github-text">Star on GitHub</span>
+        </a>
+        
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-toggle" class="btn-mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-links">
+        <a href="#calculator" class="mobile-link" onclick="closeMobileMenu()">
+          <span>🧮</span> Calculator
+        </a>
+        <a href="#features" class="mobile-link" onclick="closeMobileMenu()">
+          <span>✨</span> Why zakat-mal?
+        </a>
+        <a href="#dalils" class="mobile-link" onclick="closeMobileMenu()">
+          <span>📖</span> Shariah Dalil Database
+        </a>
+        <a href="#jurisdictions" class="mobile-link" onclick="closeMobileMenu()">
+          <span>🌐</span> Multi-Jurisdictions (SA, MY, SG, ID)
+        </a>
+        <a href="#developer" class="mobile-link" onclick="closeMobileMenu()">
+          <span>⚡</span> SDK & API Documentation
+        </a>
+        <a href="#faq" class="mobile-link" onclick="closeMobileMenu()">
+          <span>❓</span> FAQ
+        </a>
+        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer" class="mobile-link github-highlight">
+          <span>⭐</span> GitHub Repository
         </a>
       </div>
     </div>
@@ -92,7 +129,7 @@
       </h1>
       
       <p class="hero-subtitle">
-        Zero-dependency, fixed-point decimal mathematics compliant with Quran, Sahih Bukhari & Muslim, and AAOIFI Standard 35. Built for neobanks, amil institutions, web & mobile applications.
+        Zero-dependency, fixed-point decimal mathematics compliant with the Quran, Sahih Bukhari & Muslim, and AAOIFI Shari'ah Standard No. 35. Built for neobanks, Islamic banking, amil institutions, web & mobile applications.
       </p>
 
       <!-- Quick Command Bar -->
@@ -133,7 +170,7 @@
   </section>
 
   <!-- Interactive Calculator Section -->
-  <main id="calculator" class="calc-section">
+  <section id="calculator" class="calc-section">
     <div class="container">
       
       <div class="calc-card glass-panel">
@@ -141,7 +178,7 @@
         <!-- Header & Global Configuration Controls -->
         <div class="calc-topbar">
           <div class="calc-heading">
-            <h2 class="section-title">Interactive Zakat Mal Calculator</h2>
+            <h2 class="section-title">Live Interactive Zakat Calculator</h2>
             <p class="section-desc">Select an asset class, specify your currency and fiscal calendar, and evaluate obligation in real time.</p>
           </div>
 
@@ -164,7 +201,7 @@
             <!-- Calendar Selector -->
             <div class="control-box">
               <label for="calendar-select" class="control-label">
-                Accounting Year
+                Fiscal Calendar
                 <span class="control-tip" title="AAOIFI Standard 35 Section 4/1/4 applies 2.577% for 365-day solar fiscal years">ℹ️</span>
               </label>
               <select id="calendar-select" class="custom-select">
@@ -175,7 +212,7 @@
           </div>
         </div>
 
-        <!-- Asset Category Tabs -->
+        <!-- Asset Category Tabs (Scrollable on Mobile) -->
         <div class="tabs-scroller" role="tablist" aria-label="Zakat Categories">
           <button class="tab-pill active" data-tab="gold" role="tab" aria-selected="true">
             <span class="tab-icon">🪙</span>
@@ -338,7 +375,7 @@
               </div>
 
               <div class="form-field">
-                <label for="income-salary" class="field-label">Gross Monthly Earnings (Salary, Bonuses, Invoices)</label>
+                <label for="income-salary" class="field-label">Gross Monthly Earnings (Salary, Invoices)</label>
                 <div class="input-wrap">
                   <span class="input-prefix" id="income-symbol-1">$</span>
                   <input type="number" id="income-salary" class="field-input with-prefix" value="6500" min="0">
@@ -375,7 +412,7 @@
             <div class="pane-content" data-pane="business">
               <div class="pane-header">
                 <h3 class="pane-title">Trade Merchandise ('Urud at-Tijarah)</h3>
-                <span class="pane-badge">Net Current Assets Formula</span>
+                <span class="pane-badge">Net Working Capital Formula</span>
               </div>
 
               <div class="form-field">
@@ -604,30 +641,287 @@
 
       </div>
 
-      <!-- Developer SDK Live Mirror -->
-      <section id="developer" class="code-mirror-section">
-        <div class="code-mirror-card glass-panel">
-          <div class="code-topbar">
-            <div class="code-title">
-              <span class="code-dot green"></span>
-              <span class="code-dot yellow"></span>
-              <span class="code-dot red"></span>
-              <span class="code-label">TypeScript SDK Live Mirror • Generated in Real Time</span>
-            </div>
-            <button id="btn-copy-code" class="btn-code-copy" onclick="copyCodeSnippet()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              <span>Copy Code</span>
-            </button>
-          </div>
-          <pre class="code-content"><code id="code-snippet-body">// Real-time mirrored TypeScript code will appear here</code></pre>
-        </div>
-      </section>
-
     </div>
-  </main>
+  </section>
+
+  <!-- Section: Why zakat-mal? (Core Pillars & Architecture) -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="pill-tag">ARCHITECTURAL EXCELLENCE</div>
+        <h2 class="section-heading">Why Leading FinTechs Trust zakat-mal</h2>
+        <p class="section-subtext">Engineered from first principles to eradicate floating-point drift, eliminate dependency vulnerabilities, and ensure uncompromising Shari'ah fidelity.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card glass-panel">
+          <div class="feature-icon-wrap emerald">
+            <span>🔢</span>
+          </div>
+          <h3 class="feature-card-title">Fixed-Point Arbitrary Math</h3>
+          <p class="feature-card-desc">Standard JavaScript IEEE-754 numbers produce binary drift (e.g. <code>0.1 + 0.2 === 0.30000000000000004</code>). We implement a high-precision decimal engine without external bloat, ensuring exact cent and gram precision.</p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon-wrap gold">
+            <span>📜</span>
+          </div>
+          <h3 class="feature-card-title">AAOIFI Standard No. 35 Compliance</h3>
+          <p class="feature-card-desc">Full support for both the Net Working Capital and Net Financing methods. Automatically adjusts the Zakat rate to <strong>2.577%</strong> for solar fiscal years as mandated by Section 4/1/4 of AAOIFI Shari'ah Standard No. 35.</p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon-wrap emerald">
+            <span>🛡️</span>
+          </div>
+          <h3 class="feature-card-title">Zero Runtime Dependencies</h3>
+          <p class="feature-card-desc"><code>dependencies: {}</code>. Absolute immunity from supply-chain hijacking and phantom package malware. Instantly runs in Node.js, Next.js, Cloudflare Workers, Edge Runtimes, Bun, and React Native.</p>
+        </div>
+
+        <div class="feature-card glass-panel">
+          <div class="feature-icon-wrap gold">
+            <span>🌐</span>
+          </div>
+          <h3 class="feature-card-title">Live Commodities & FX Oracle</h3>
+          <p class="feature-card-desc">Integrated pluggable oracles for LBMA gold & silver spot prices and interbank exchange rates. Cacheable with configurable TTL and zero-drift offline fallbacks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Shariah Dalil Database Explorer -->
+  <section id="dalils" class="dalils-section">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="pill-tag">AUTHENTICATED SHARIAH SANAD</div>
+        <h2 class="section-heading">Shariah Dalil Database</h2>
+        <p class="section-subtext">Every calculation is grounded in the Noble Quran, Sahih Bukhari & Muslim, and authenticated contemporary standards.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="dalil-filters">
+        <button class="dalil-filter-btn active" data-dalil-filter="all">All Sources (8)</button>
+        <button class="dalil-filter-btn" data-dalil-filter="quran">Al-Qur'an Al-Karim</button>
+        <button class="dalil-filter-btn" data-dalil-filter="hadith">Sahih Hadith</button>
+        <button class="dalil-filter-btn" data-dalil-filter="contemporary">AAOIFI & Fatwa Bodies</button>
+      </div>
+
+      <!-- Dalil Grid -->
+      <div class="dalils-grid">
+        
+        <!-- Card 1 -->
+        <div class="dalil-card glass-panel" data-category="quran">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">Al-Qur'an • Surah At-Tawbah (9:103)</span>
+            <span class="dalil-grade-tag">Mutawatir</span>
+          </div>
+          <h3 class="dalil-card-title">Command to Collect Zakat to Purify Wealth and Souls</h3>
+          <div class="dalil-arabic-text">خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا وَصَلِّ عَلَيْهِمْ ۖ إِنَّ صَلَاتَكَ سَكَنٌ لَّهُمْ ۗ وَاللَّهُ سَمِيعٌ عَلِيمٌ</div>
+          <p class="dalil-translation">"Take, [O Muhammad], from their wealth a charity by which you purify them and cause them increase, and invoke [Allah's blessings] upon them. Indeed, your invocations are reassurance for them. And Allah is Hearing and Knowing."</p>
+          <div class="dalil-relevance">Fundamental Quranic decree establishing the mandatory nature of Zakat on growing productive wealth (an-nama').</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="dalil-card glass-panel" data-category="hadith">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">Sunan Abu Dawud No. 1573 • Ali bin Abi Thalib r.a.</span>
+            <span class="dalil-grade-tag">Hasan / Sahih</span>
+          </div>
+          <h3 class="dalil-card-title">Nisab and Rate of Gold (20 Dinars = 85g) & Silver (200 Dirhams = 595g)</h3>
+          <div class="dalil-arabic-text">فَإِذَا كَانَتْ لَكَ مِائَتَا دِرْهَمٍ وَحَالَ عَلَيْهَا الْحَوْلُ فَفِيهَا خَمْسَةُ دَرَاهِمَ، وَلَيْسَ عَلَيْكَ شَيْءٌ - يَعْنِي فِي الذَّهَبِ - حَتَّى يَكُونَ لَكَ عِشْرُونَ دِينَارًا</div>
+          <p class="dalil-translation">"When you possess two hundred dirhams and a full year has passed, five dirhams are due. And you owe nothing on gold until you possess twenty dinars. When you possess twenty dinars and a year passes, half a dinar is due."</p>
+          <div class="dalil-relevance">Defines the universal 85g gold and 595g silver thresholds and the 2.500% (1/40) standard monetary rate.</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="dalil-card glass-panel" data-category="hadith">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">Sahih Bukhari No. 1405 & Muslim No. 979</span>
+            <span class="dalil-grade-tag">Muttafaq 'Alayh</span>
+          </div>
+          <h3 class="dalil-card-title">Minimum Nisab of 5 Awaq (Silver) and 5 Wasaq (Produce)</h3>
+          <div class="dalil-arabic-text">لَيْسَ فِيمَا دُونَ خَمْسِ أَوَاقٍ صَدَقَةٌ، وَلَيْسَ فِيمَا دُونَ خَمْسِ ذَوْدٍ صَدَقَةٌ، وَلَيْسَ فِيمَا دُونَ خَمْسَةِ أَوْسُقٍ صَدَقَةٌ</div>
+          <p class="dalil-translation">"There is no charity (zakat) on anything less than five Uqiyah [200 dirhams silver], there is no charity on less than five camels, and there is no charity on less than five Wasaq [~653 kg of grain/produce]."</p>
+          <div class="dalil-relevance">Authenticated hadith establishing the agricultural 5 wasaq nisab and livestock minimum thresholds.</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="dalil-card glass-panel" data-category="contemporary">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">AAOIFI Shari'ah Standard No. 35 • Section 4/1/4</span>
+            <span class="dalil-grade-tag">Global Standard</span>
+          </div>
+          <h3 class="dalil-card-title">Solar Fiscal Year Rate Adjustment (2.577%)</h3>
+          <div class="dalil-arabic-text">إذا حُسبت الزكاة وفقاً للسنة الشمسية، فإن النسبة الواجبة تُعدل لتصبح ٢,٥٧٧٪ بدلاً من ٢,٥٪ لمراعاة الفرق بين عدد أيام السنة الشمسية والسنة القمرية.</div>
+          <p class="dalil-translation">"If Zakah is calculated on the basis of a solar year (Gregorian), the due rate is adjusted to 2.577% instead of 2.5%, in order to account for the difference in days between the solar year (365.25 days) and the lunar year (354.36 days)."</p>
+          <div class="dalil-relevance">Authoritative banking standard for corporate enterprises and modern accounts operating on Gregorian fiscal cycles.</div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="dalil-card glass-panel" data-category="hadith">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">Sunan Abu Dawud No. 1562 • Samurah bin Jundub r.a.</span>
+            <span class="dalil-grade-tag">Hasan</span>
+          </div>
+          <h3 class="dalil-card-title">Obligation on Commercial Trade Goods ('Urud at-Tijarah)</h3>
+          <div class="dalil-arabic-text">أَمَّا بَعْدُ، فَإِنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ كَانَ يَأْمُرُنَا أَنْ نُخْرِجَ الصَّدَقَةَ مِنَ الَّذِي نُعِدُّ لِلْبَيْعِ</div>
+          <p class="dalil-translation">"The Messenger of Allah (ﷺ) used to command us to pay zakat from whatever we prepared for sale."</p>
+          <div class="dalil-relevance">Foundational hadith grounding business inventory and commercial merchandise zakat.</div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="dalil-card glass-panel" data-category="quran">
+          <div class="dalil-card-top">
+            <span class="dalil-source-tag">Al-Qur'an • Surah Al-An'am (6:141)</span>
+            <span class="dalil-grade-tag">Mutawatir</span>
+          </div>
+          <h3 class="dalil-card-title">Zakat Due on the Day of Harvest (No Hawl)</h3>
+          <div class="dalil-arabic-text">كُلُوا مِن ثَمَرِهِ إِذَا أَثْمَرَ وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ ۖ وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ</div>
+          <p class="dalil-translation">"Eat of [each of] its fruit when it yields and give its due [zakat] on the day of its harvest. And be not excessive. Indeed, He does not like those who commit excess."</p>
+          <div class="dalil-relevance">Proof that agricultural produce has no 1-year Hawl requirement and is payable immediately upon harvest.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Multi-Jurisdiction Engine Showcase -->
+  <section id="jurisdictions" class="jurisdictions-section">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="pill-tag">GLOBAL JURISDICTIONS</div>
+        <h2 class="section-heading">Multi-Jurisdiction & Madhhab Compliance</h2>
+        <p class="section-subtext">The engine natively adapts to statutory tax bodies and classical Madhhab nuances across sovereign nations.</p>
+      </div>
+
+      <div class="jurisdiction-grid">
+        
+        <div class="jurisdiction-card glass-panel">
+          <div class="jurisdiction-flag">🇸🇦</div>
+          <h3 class="jurisdiction-title">Saudi Arabia (ZATCA)</h3>
+          <p class="jurisdiction-desc">Calculates statutory Corporate Zakat for Saudi & GCC equity shareholding (2.5% Lunar / 2.577% Solar), accurately segregating non-GCC equity subject to 20% Corporate Income Tax.</p>
+          <div class="jurisdiction-code"><code>calculateSaudiZatcaCorporateZakat(...)</code></div>
+        </div>
+
+        <div class="jurisdiction-card glass-panel">
+          <div class="jurisdiction-flag">🇲🇾</div>
+          <h3 class="jurisdiction-title">Malaysia (PPZ / Had Kifayah)</h3>
+          <p class="jurisdiction-desc">Calculates individual professional income zakat using the official PPZ-MAIWP Had Kifayah formula (deducting working/non-working wives, schooling children, EPF/KWSP) with 100% tax rebate compatibility.</p>
+          <div class="jurisdiction-code"><code>calculateMalaysiaIncomeZakat(...)</code></div>
+        </div>
+
+        <div class="jurisdiction-card glass-panel">
+          <div class="jurisdiction-flag">🇸🇬</div>
+          <h3 class="jurisdiction-title">Singapore (MUIS CPF Rules)</h3>
+          <p class="jurisdiction-desc">Implements MUIS Fatwa Committee guidelines regarding CPF retirement funds: exempt while locked in the CPF Board due to incomplete ownership (al-milkiyyah an-naqisah), payable upon official withdrawal.</p>
+          <div class="jurisdiction-code"><code>calculateSingaporeCpfZakat(...)</code></div>
+        </div>
+
+        <div class="jurisdiction-card glass-panel">
+          <div class="jurisdiction-flag">⚖️</div>
+          <h3 class="jurisdiction-title">Classical Madhhab Evaluator</h3>
+          <p class="jurisdiction-desc">Seamlessly evaluates jewelry according to the Hanafi school (all jewelry zakatable above 85g) versus the Jumhur majority (Shafi'i, Maliki, Hanbali - personal customary jewelry exempt).</p>
+          <div class="jurisdiction-code"><code>evaluateJewelryByMadhhab(...)</code></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Developer Integration & Subpaths -->
+  <section id="developer" class="dev-section">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="pill-tag">DEVELOPER INTEGRATION</div>
+        <h2 class="section-heading">Built for Production FinTech Codebases</h2>
+        <p class="section-subtext">Tree-shakeable dual ESM/CJS exports with 100% TypeScript definitions and JSDoc Dalil annotations.</p>
+      </div>
+
+      <!-- Live Code Mirror Playground -->
+      <div class="code-mirror-card glass-panel">
+        <div class="code-topbar">
+          <div class="code-title">
+            <span class="code-dot green"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot red"></span>
+            <span class="code-label">Live TypeScript SDK Generator • Mirrors Calculator State</span>
+          </div>
+          <button id="btn-copy-code" class="btn-code-copy" onclick="copyCodeSnippet()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Snippet</span>
+          </button>
+        </div>
+        <pre class="code-content"><code id="code-snippet-body">// Live generated TypeScript code mirrors the active calculator form here</code></pre>
+      </div>
+
+      <!-- Subpath Grid -->
+      <div class="subpath-header">
+        <h3 class="subpath-heading">Available Specialized Subpaths</h3>
+        <p class="subpath-sub">Import only what you need to keep browser bundles lightweight and fast.</p>
+      </div>
+
+      <div class="subpath-grid">
+        <div class="subpath-pill"><code>zakat-mal/gold-silver</code></div>
+        <div class="subpath-pill"><code>zakat-mal/cash-savings</code></div>
+        <div class="subpath-pill"><code>zakat-mal/income</code></div>
+        <div class="subpath-pill"><code>zakat-mal/business</code></div>
+        <div class="subpath-pill"><code>zakat-mal/corporate</code></div>
+        <div class="subpath-pill"><code>zakat-mal/investments</code></div>
+        <div class="subpath-pill"><code>zakat-mal/agriculture</code></div>
+        <div class="subpath-pill"><code>zakat-mal/livestock</code></div>
+        <div class="subpath-pill"><code>zakat-mal/jurisdiction</code></div>
+        <div class="subpath-pill"><code>zakat-mal/oracle</code></div>
+        <div class="subpath-pill"><code>zakat-mal/hawl</code></div>
+        <div class="subpath-pill"><code>zakat-mal/basket</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Frequently Asked Questions (FAQ) -->
+  <section id="faq" class="faq-section">
+    <div class="container faq-container">
+      <div class="section-header-centered">
+        <div class="pill-tag">COMMON INQUIRIES</div>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-subtext">Clear answers on Shari'ah calculations, technical implementation, and compliance standards.</p>
+      </div>
+
+      <div class="faq-list">
+        
+        <details class="faq-item glass-panel">
+          <summary class="faq-question">Why is standard JavaScript floating-point arithmetic forbidden for Zakat?</summary>
+          <div class="faq-answer">
+            JavaScript numbers use IEEE-754 64-bit binary floating-point representation. Calculations such as <code>0.1 + 0.2 === 0.30000000000000004</code> introduce cumulative drift in large balances. In Islamic jurisprudence, Zakat is a mandatory religious right of the poor (Haqq al-Fuqara') requiring exactness. <code>zakat-mal</code> implements a proprietary fixed-point decimal engine ensuring exact cent, penny, and gram precision.
+          </div>
+        </details>
+
+        <details class="faq-item glass-panel">
+          <summary class="faq-question">How does AAOIFI Standard No. 35 adjust rates for solar (Gregorian) years?</summary>
+          <div class="faq-answer">
+            The standard lunar year (Hijri) comprises ~354.36 days, for which the canonical rate is 2.500% (1/40). A Gregorian fiscal year comprises ~365.25 days. Section 4/1/4 of AAOIFI Shari'ah Standard No. 35 stipulates that for solar fiscal years, the rate is mathematically adjusted by multiplying <code>2.5% * (365.25 / 354.36) = 2.577%</code> to ensure equality of religious obligation.
+          </div>
+        </details>
+
+        <details class="faq-item glass-panel">
+          <summary class="faq-question">Should cash and bank savings be evaluated against the Gold or Silver Nisab?</summary>
+          <div class="faq-answer">
+            Contemporary Islamic Fiqh bodies (AAOIFI, International Islamic Fiqh Academy, and Fatwa councils in Saudi Arabia, Egypt, and Southeast Asia) predominantly benchmark cash wealth against the <strong>Gold Nisab (85 grams)</strong> because gold has historically maintained stable purchasing power representing the threshold of true surplus wealth (Al-Ghina).
+          </div>
+        </details>
+
+        <details class="faq-item glass-panel">
+          <summary class="faq-question">Can zakat-mal run in Serverless, Edge, and Cloudflare Workers?</summary>
+          <div class="faq-answer">
+            Yes! Because <code>zakat-mal</code> has zero external dependencies (<code>dependencies: {}</code>) and ships dual ESM (.mjs) and CJS (.js) builds, it boots with zero cold-start delay in Vercel Edge, Cloudflare Workers, AWS Lambda, Deno, Bun, and React Native mobile applications.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
 
   <!-- Sticky Mobile Bar -->
   <aside class="mobile-sticky-bar" id="mobile-bar">
@@ -658,7 +952,7 @@
         </div>
         <div class="prayer-section">
           <span class="prayer-heading">English Translation:</span>
-          <p id="modal-translation" class="prayer-english">"I intend to disburse the obligatory Zakat upon my wealth, as a religious duty for the sake of Allah the Almighty."</p>
+          <p id="modal-translation" class="prayer-english">"I intend to disburse the obligatory Zakat upon my wealth, as a sacred duty for the sake of Allah the Almighty."</p>
         </div>
         <button class="btn-copy-modal" onclick="copyNiyyahText()">
           <span>📋</span> Copy Prayer Text
@@ -732,10 +1026,20 @@
         <p class="footer-tagline">The Authoritative, Fiqh-Verified Zakat Mal Calculation Engine. Released under the MIT License.</p>
       </div>
       <div class="footer-links-grid">
-        <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
-        <a href="https://www.npmjs.com/package/zakat-mal" target="_blank" rel="noopener noreferrer">NPM Package</a>
-        <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/llms.txt" target="_blank">llms.txt (AI Spec)</a>
-        <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/AGENTS.md" target="_blank">AGENTS.md</a>
+        <div class="footer-col">
+          <span class="footer-col-title">Engine</span>
+          <a href="#calculator">Calculator</a>
+          <a href="#features">Architecture</a>
+          <a href="#dalils">Shariah Dalils</a>
+          <a href="#jurisdictions">Jurisdictions</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Developers</span>
+          <a href="https://www.npmjs.com/package/zakat-mal" target="_blank" rel="noopener noreferrer">NPM Registry</a>
+          <a href="https://github.com/codesbykhairannoor/zakat-mal" target="_blank" rel="noopener noreferrer">GitHub Source</a>
+          <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/llms.txt" target="_blank" rel="noopener noreferrer">llms.txt (AI Specification)</a>
+          <a href="https://github.com/codesbykhairannoor/zakat-mal/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer">AGENTS.md</a>
+        </div>
       </div>
     </div>
   </footer>
