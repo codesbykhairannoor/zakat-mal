@@ -54,24 +54,38 @@ export function calculateCorporateZakat(input: CorporateZakatInput): ZakatResult
   const breakdown: Record<string, string> = {};
 
   if (method === 'net_working_capital') {
-    // 1. Net Working Capital Approach (Aset Lancar Bersih)
+    // 1. Net Working Capital Approach (Aset Lancar Bersih) - AAOIFI Standard 35
     const currentAssets = D(input.currentAssets ?? 0);
     const nonZakatable = D(input.nonZakatableCurrentAssets ?? 0);
+    const badDebts = D(input.badDebtsAllowance ?? 0);
     const currentLiabilities = D(input.currentLiabilities ?? 0);
+    const employeeBenefits = D(input.employeeBenefitsProvision ?? 0);
 
-    if (currentAssets.isNegative() || nonZakatable.isNegative() || currentLiabilities.isNegative()) {
+    if (
+      currentAssets.isNegative() ||
+      nonZakatable.isNegative() ||
+      currentLiabilities.isNegative() ||
+      badDebts.isNegative() ||
+      employeeBenefits.isNegative()
+    ) {
       throw new InvalidInputError(
         locale === 'id' ? 'Komponen aset dan liabilitas lancar tidak boleh negatif.' : 'Current assets and liabilities cannot be negative.'
       );
     }
 
-    const zakatableCurrentAssets = Decimal.max(0, currentAssets.sub(nonZakatable));
-    totalBase = Decimal.max(0, zakatableCurrentAssets.sub(currentLiabilities));
+    // Per AAOIFI Standard No. 35 (Section 4/1/4):
+    // Bad debts allowance is excluded from zakatable receivables,
+    // and recognized employee end-of-service provisions are deductible liabilities.
+    const zakatableCurrentAssets = Decimal.max(0, currentAssets.sub(nonZakatable).sub(badDebts));
+    const totalDeductibleLiabilities = currentLiabilities.add(employeeBenefits);
+    totalBase = Decimal.max(0, zakatableCurrentAssets.sub(totalDeductibleLiabilities));
 
     breakdown['currentAssets'] = currentAssets.toFixed(2);
     breakdown['nonZakatableCurrentAssets'] = nonZakatable.toFixed(2);
+    breakdown['badDebtsAllowance'] = badDebts.toFixed(2);
     breakdown['zakatableCurrentAssets'] = zakatableCurrentAssets.toFixed(2);
     breakdown['currentLiabilities'] = currentLiabilities.toFixed(2);
+    breakdown['employeeBenefitsProvision'] = employeeBenefits.toFixed(2);
   } else if (method === 'net_equity') {
     // 2. Net Equity Approach (Sumber Pendanaan Bersih)
     const capital = D(input.paidUpCapital ?? 0);

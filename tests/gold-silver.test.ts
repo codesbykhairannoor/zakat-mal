@@ -96,6 +96,29 @@ describe('Gold & Silver Zakat Module', () => {
     expect(res.details.goldZakatDueGrams).toBe('2.5770');
   });
 
+  it('calculates zakat on personal gold jewelry under Hanafi madhhab', () => {
+    const res = calculateGoldSilverZakat({
+      goldGrams: 100,
+      goldUsage: 'personal',
+      madhhab: 'hanafi',
+      goldPricePerGram: goldPrice
+    });
+    // Under Hanafi: personal jewelry >= 85g is 100% zakatable!
+    expect(res.isObligatory).toBe(true);
+    expect(res.details.goldZakatDueGrams).toBe('2.5000');
+    expect(res.details.goldZakatDueMonetary).toBe('3750000.00');
+    expect(res.notes.some((n) => n.toLowerCase().includes('hanafi'))).toBe(true);
+  });
+
+  it('throws InvalidInputError on negative gold price', () => {
+    expect(() =>
+      calculateGoldSilverZakat({
+        goldGrams: 100,
+        goldPricePerGram: -500
+      })
+    ).toThrow();
+  });
+
   it('includes authentic Dalil references in the output', () => {
     const res = calculateGoldSilverZakat({
       goldGrams: 100,

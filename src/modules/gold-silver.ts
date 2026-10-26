@@ -57,15 +57,22 @@ export function calculateGoldSilverZakat(input: GoldSilverInput): ZakatResult<Go
   const goldPurityRatio = D(goldPurityKarat).div(24, 6);
   let zakatableGoldGrams = rawGoldGrams.mul(goldPurityRatio);
 
-  // Jewelry usage check
+  const madhhab = input.madhhab ?? 'jumhur';
+
+  // Jewelry usage check based on Madhhab
   const goldUsage = input.goldUsage ?? 'investment';
   const customaryExempt = D(input.customaryExemptGrams ?? 100);
 
-  if (goldUsage === 'personal') {
-    // Customary personal use is exempt per Jumhur
-    zakatableGoldGrams = D(0);
-  } else if (goldUsage === 'excess') {
-    zakatableGoldGrams = Decimal.max(0, zakatableGoldGrams.sub(customaryExempt));
+  if (madhhab === 'hanafi') {
+    // Madhhab Hanafi: all gold jewelry is zakatable regardless of personal use once nisab is met
+    zakatableGoldGrams = rawGoldGrams.mul(goldPurityRatio);
+  } else {
+    // Jumhur (Shafi'i, Maliki, Hanbali): customary personal jewelry is exempt
+    if (goldUsage === 'personal') {
+      zakatableGoldGrams = D(0);
+    } else if (goldUsage === 'excess') {
+      zakatableGoldGrams = Decimal.max(0, zakatableGoldGrams.sub(customaryExempt));
+    }
   }
 
   const goldNisabGrams = D(ISLAMIC_CONSTANTS.NISAB_GOLD_GRAMS);
@@ -77,6 +84,12 @@ export function calculateGoldSilverZakat(input: GoldSilverInput): ZakatResult<Go
   }
 
   const goldPrice = D(input.goldPricePerGram ?? 0);
+  if (goldPrice.isNegative()) {
+    throw new InvalidInputError(
+      locale === 'id' ? 'Harga emas tidak boleh negatif.' : 'Gold price cannot be negative.',
+      'goldPricePerGram'
+    );
+  }
   const goldZakatDueMonetary = goldZakatDueGrams.mul(goldPrice);
 
   // 2. Process Silver
@@ -93,8 +106,13 @@ export function calculateGoldSilverZakat(input: GoldSilverInput): ZakatResult<Go
   let zakatableSilverGrams = rawSilverGrams.mul(silverPurityRatio);
 
   const silverUsage = input.silverUsage ?? 'investment';
-  if (silverUsage === 'personal') {
-    zakatableSilverGrams = D(0);
+  if (madhhab === 'hanafi') {
+    // Madhhab Hanafi: all silver jewelry is zakatable
+    zakatableSilverGrams = rawSilverGrams.mul(silverPurityRatio);
+  } else {
+    if (silverUsage === 'personal') {
+      zakatableSilverGrams = D(0);
+    }
   }
 
   const silverNisabGrams = D(ISLAMIC_CONSTANTS.NISAB_SILVER_GRAMS);
@@ -106,6 +124,12 @@ export function calculateGoldSilverZakat(input: GoldSilverInput): ZakatResult<Go
   }
 
   const silverPrice = D(input.silverPricePerGram ?? 0);
+  if (silverPrice.isNegative()) {
+    throw new InvalidInputError(
+      locale === 'id' ? 'Harga perak tidak boleh negatif.' : 'Silver price cannot be negative.',
+      'silverPricePerGram'
+    );
+  }
   const silverZakatDueMonetary = silverZakatDueGrams.mul(silverPrice);
 
   const totalZakatDueMonetary = goldZakatDueMonetary.add(silverZakatDueMonetary);
@@ -121,7 +145,13 @@ export function calculateGoldSilverZakat(input: GoldSilverInput): ZakatResult<Go
   if (!isSilverNisabReached && rawSilverGrams.gt(0)) {
     notes.push(t('silver_nisab_not_reached', locale, { weight: zakatableSilverGrams.toFixed(2), nisab: silverNisabGrams.toFixed(0) }));
   }
-  if (goldUsage === 'personal') {
+  if (madhhab === 'hanafi' && (goldUsage === 'personal' || silverUsage === 'personal')) {
+    notes.push(
+      locale === 'id'
+        ? 'Mazhab Hanafi: Seluruh perhiasan pribadi tetap dikenakan zakat jika mencapai nisab (tidak ada pengecualian perhiasan).'
+        : 'Hanafi Madhhab: All personal jewelry is zakatable once nisab is met (no personal customary exemption).'
+    );
+  } else if (goldUsage === 'personal') {
     notes.push(t('personal_jewelry_exempt', locale));
   }
 

@@ -71,4 +71,26 @@ describe('Corporate Zakat Module (AAOIFI Shari\'ah Standard No. 35)', () => {
     // 1B * 0.02577 = 25,770,000
     expect(res.zakatDue).toBe('25770000.00');
   });
+
+  it('incorporates bad debts allowance and employee benefits provision per AAOIFI 35', () => {
+    const res = calculateCorporateZakat({
+      method: 'net_working_capital',
+      currentAssets: 500000000, // 500M
+      nonZakatableCurrentAssets: 50000000, // 50M
+      badDebtsAllowance: 20000000, // 20M bad debt allowance deducted
+      currentLiabilities: 100000000, // 100M
+      employeeBenefitsProvision: 30000000, // 30M EOSB provision deducted
+      muslimOwnershipPercentage: 100,
+      goldPricePerGram: goldPrice,
+      calendar: 'hijri'
+    });
+
+    // Zakatable Current Assets = 500M - 50M - 20M = 430M
+    // Deductible Liabilities = 100M + 30M = 130M
+    // Total Base = 430M - 130M = 300M
+    expect(res.details.muslimZakatableBase).toBe('300000000.00');
+    expect(res.details.breakdown.badDebtsAllowance).toBe('20000000.00');
+    expect(res.details.breakdown.employeeBenefitsProvision).toBe('30000000.00');
+    expect(res.zakatDue).toBe('7500000.00');
+  });
 });

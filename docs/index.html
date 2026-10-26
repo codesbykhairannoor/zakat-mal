@@ -358,11 +358,20 @@
                 </div>
               </div>
 
-              <div class="form-field">
-                <label for="cash-gold-price" class="field-label">Gold Price Benchmark per Gram</label>
-                <div class="input-wrap">
-                  <span class="input-prefix" id="cash-symbol-5">$</span>
-                  <input type="number" id="cash-gold-price" class="field-input with-prefix" value="85" min="0" step="0.1">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="cash-nisab-standard" class="field-label">Nisab Threshold Standard</label>
+                  <select id="cash-nisab-standard" class="custom-select">
+                    <option value="gold" selected>Gold Nisab (85g • MUI / BAZNAS / Qaradawi consensus)</option>
+                    <option value="silver">Silver Nisab (595g • Classical Hanafi / Anfa' lil Fuqara)</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="cash-gold-price" class="field-label">Metal Price Benchmark per Gram</label>
+                  <div class="input-wrap">
+                    <span class="input-prefix" id="cash-symbol-5">$</span>
+                    <input type="number" id="cash-gold-price" class="field-input with-prefix" value="85" min="0" step="0.1">
+                  </div>
                 </div>
               </div>
             </div>
@@ -461,6 +470,23 @@
                 <div class="input-wrap">
                   <span class="input-prefix" id="corp-symbol-1">$</span>
                   <input type="number" id="corp-assets" class="field-input with-prefix" value="1000000" min="0">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="corp-bad-debts" class="field-label">Allowance for Bad Debts (AAOIFI §4/1/4)</label>
+                  <div class="input-wrap">
+                    <span class="input-prefix" id="corp-symbol-bad">$</span>
+                    <input type="number" id="corp-bad-debts" class="field-input with-prefix" value="30000" min="0">
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="corp-eosb" class="field-label">Employee Benefits Provision (EOSB)</label>
+                  <div class="input-wrap">
+                    <span class="input-prefix" id="corp-symbol-eosb">$</span>
+                    <input type="number" id="corp-eosb" class="field-input with-prefix" value="50000" min="0">
+                  </div>
                 </div>
               </div>
 

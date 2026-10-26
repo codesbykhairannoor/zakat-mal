@@ -6,12 +6,14 @@ import { CalendarType, Locale } from './common';
 
 // --- Gold & Silver ---
 export type JewelryUsage = 'personal' | 'investment' | 'excess';
+export type MadhhabOption = 'jumhur' | 'hanafi' | 'shafii' | 'maliki' | 'hanbali';
 
 export interface GoldSilverInput {
   goldGrams?: number | string;
   goldPurityKarat?: number; // 24 (default), 22, 18, 14 etc.
   goldUsage?: JewelryUsage;
   customaryExemptGrams?: number | string; // e.g. up to 100g personal customary limit
+  madhhab?: MadhhabOption; // 'jumhur' (default: exempts personal jewelry) or 'hanafi' (all personal jewelry is zakatable if >= nisab)
   silverGrams?: number | string;
   silverPurityPercent?: number; // 100 (default) or 92.5 (sterling)
   silverUsage?: JewelryUsage;
@@ -150,6 +152,8 @@ export interface CorporateZakatInput {
   currentAssets?: number | string;
   nonZakatableCurrentAssets?: number | string;
   currentLiabilities?: number | string;
+  employeeBenefitsProvision?: number | string; // Allowance for end-of-service indemnity (AAOIFI Standard 35)
+  badDebtsAllowance?: number | string; // Allowance for doubtful accounts / bad debts (AAOIFI Standard 35)
   // Net equity approach fields
   paidUpCapital?: number | string;
   reserves?: number | string;

@@ -13,14 +13,14 @@ const NISAB_AGRICULTURE_KG = 653;   // 5 Wasaq unhusked grain
 
 // International Currency Registry
 const CURRENCY_REGISTRY = {
-  USD: { symbol: '$', goldDefault: 85, locale: 'en-US', decimals: 2 },
-  EUR: { symbol: '€', goldDefault: 78, locale: 'de-DE', decimals: 2 },
-  GBP: { symbol: '£', goldDefault: 68, locale: 'en-GB', decimals: 2 },
-  SAR: { symbol: 'SAR', goldDefault: 318, locale: 'ar-SA', decimals: 2 },
-  AED: { symbol: 'AED', goldDefault: 312, locale: 'ar-AE', decimals: 2 },
-  MYR: { symbol: 'RM', goldDefault: 395, locale: 'ms-MY', decimals: 2 },
-  SGD: { symbol: 'S$', goldDefault: 115, locale: 'en-SG', decimals: 2 },
-  IDR: { symbol: 'Rp', goldDefault: 1500000, locale: 'id-ID', decimals: 0 }
+  USD: { symbol: '$', goldDefault: 85, silverDefault: 1.05, locale: 'en-US', decimals: 2 },
+  EUR: { symbol: '€', goldDefault: 78, silverDefault: 0.98, locale: 'de-DE', decimals: 2 },
+  GBP: { symbol: '£', goldDefault: 68, silverDefault: 0.82, locale: 'en-GB', decimals: 2 },
+  SAR: { symbol: 'SAR', goldDefault: 318, silverDefault: 3.94, locale: 'ar-SA', decimals: 2 },
+  AED: { symbol: 'AED', goldDefault: 312, silverDefault: 3.86, locale: 'ar-AE', decimals: 2 },
+  MYR: { symbol: 'RM', goldDefault: 395, silverDefault: 4.88, locale: 'ms-MY', decimals: 2 },
+  SGD: { symbol: 'S$', goldDefault: 115, silverDefault: 1.42, locale: 'en-SG', decimals: 2 },
+  IDR: { symbol: 'Rp', goldDefault: 1500000, silverDefault: 18000, locale: 'id-ID', decimals: 0 }
 };
 
 // Shariah Dalil Database
@@ -195,11 +195,14 @@ function recalculateActiveModule() {
       const savings = parseFloat(document.getElementById('bank-savings')?.value || '0') || 0;
       const loans = parseFloat(document.getElementById('cash-loans')?.value || '0') || 0;
       const debts = parseFloat(document.getElementById('cash-debts')?.value || '0') || 0;
-      const goldPrice = parseFloat(document.getElementById('cash-gold-price')?.value || `${currencyCfg.goldDefault}`) || 0;
+      const metalPrice = parseFloat(document.getElementById('cash-gold-price')?.value || `${currencyCfg.goldDefault}`) || 0;
+      const nisabStandard = document.getElementById('cash-nisab-standard')?.value || 'gold';
 
       const totalLiquid = cash + savings + loans;
       const netBase = Math.max(0, totalLiquid - debts);
-      const nisabVal = NISAB_GOLD_GRAMS * goldPrice;
+      const isSilver = nisabStandard === 'silver';
+      const nisabGrams = isSilver ? NISAB_SILVER_GRAMS : NISAB_GOLD_GRAMS;
+      const nisabVal = nisabGrams * metalPrice;
 
       isObligatory = netBase >= nisabVal;
       zakatableBase = netBase;
@@ -207,7 +210,7 @@ function recalculateActiveModule() {
       zakatDue = isObligatory ? (netBase * rate) : 0;
 
       baseFormatted = formatMoney(netBase, activeCurrency);
-      nisabFormatted = `${formatMoney(nisabVal, activeCurrency)} (85g Gold)`;
+      nisabFormatted = `${formatMoney(nisabVal, activeCurrency)} (${nisabGrams}g ${isSilver ? 'Silver' : 'Gold'})`;
       dueFormatted = formatMoney(zakatDue, activeCurrency);
       break;
     }
@@ -255,11 +258,15 @@ function recalculateActiveModule() {
 
     case 'corporate': {
       const currentAssets = parseFloat(document.getElementById('corp-assets')?.value || '0') || 0;
+      const badDebts = parseFloat(document.getElementById('corp-bad-debts')?.value || '0') || 0;
+      const eosb = parseFloat(document.getElementById('corp-eosb')?.value || '0') || 0;
       const currentLiabilities = parseFloat(document.getElementById('corp-liabilities')?.value || '0') || 0;
       const muslimPct = Math.max(0, Math.min(100, parseFloat(document.getElementById('corp-muslim-pct')?.value || '100') || 100));
       const goldPrice = parseFloat(document.getElementById('corp-gold-price')?.value || `${currencyCfg.goldDefault}`) || 0;
 
-      const nwc = Math.max(0, currentAssets - currentLiabilities);
+      const zakatableAssets = Math.max(0, currentAssets - badDebts);
+      const deductibleLiab = currentLiabilities + eosb;
+      const nwc = Math.max(0, zakatableAssets - deductibleLiab);
       const muslimBase = nwc * (muslimPct / 100);
       const nisabVal = NISAB_GOLD_GRAMS * goldPrice;
 
@@ -617,7 +624,6 @@ function handleCurrencyChange(e) {
   // Update gold price inputs to realistic benchmarks
   const goldPriceInputs = [
     'gold-price',
-    'cash-gold-price',
     'income-gold-price',
     'biz-gold-price',
     'corp-gold-price',
@@ -627,6 +633,12 @@ function handleCurrencyChange(e) {
     const el = document.getElementById(id);
     if (el) el.value = cfg.goldDefault;
   });
+
+  const cashPriceInput = document.getElementById('cash-gold-price');
+  const cashNisabType = document.getElementById('cash-nisab-standard')?.value || 'gold';
+  if (cashPriceInput) {
+    cashPriceInput.value = cashNisabType === 'silver' ? cfg.silverDefault : cfg.goldDefault;
+  }
 
   recalculateActiveModule();
 }
@@ -749,6 +761,19 @@ function setupEventListeners() {
   // Calendar select
   const calSelect = document.getElementById('calendar-select');
   if (calSelect) calSelect.addEventListener('change', handleCalendarChange);
+
+  // Cash Nisab Standard select (Gold vs Silver auto-price adjustment)
+  const cashNisabSelect = document.getElementById('cash-nisab-standard');
+  if (cashNisabSelect) {
+    cashNisabSelect.addEventListener('change', (e) => {
+      const cfg = CURRENCY_REGISTRY[activeCurrency] || CURRENCY_REGISTRY.USD;
+      const priceInput = document.getElementById('cash-gold-price');
+      if (priceInput) {
+        priceInput.value = e.target.value === 'silver' ? cfg.silverDefault : cfg.goldDefault;
+      }
+      recalculateActiveModule();
+    });
+  }
 
   // All input changes trigger recalculation
   const allInputs = document.querySelectorAll('.field-input, .custom-select');
