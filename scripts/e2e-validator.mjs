@@ -271,7 +271,7 @@ console.log('  ✔ CommonJS require() and subpath exports passed.');
       cwd: SANDBOX_DIR,
       encoding: 'utf8'
     });
-    if (!cliOutputGold.includes('WAJIB ZAKAT') || !cliOutputGold.includes('3750000.00')) {
+    if ((!cliOutputGold.includes('WAJIB ZAKAT') && !cliOutputGold.includes('OBLIGATORY')) || !cliOutputGold.includes('3750000.00')) {
       throw new Error('CLI output unexpected:\n' + cliOutputGold);
     }
     logSuccess('CLI Binary "zakat-mal gold" passed.');
