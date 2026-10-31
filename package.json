@@ -1,6 +1,6 @@
 {
   "name": "zakat-mal",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Authoritative, mathematically rigorous, and Fiqh-verified Zakat Mal calculation engine. Grounded in Al-Qur'an, Sahih Hadith, AAOIFI Shari'ah Standard No. 35, and Fatwa MUI/BAZNAS.",
   "type": "commonjs",
   "sideEffects": false,
