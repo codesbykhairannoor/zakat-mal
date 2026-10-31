@@ -249,6 +249,29 @@ body {
   transform: translateY(-1px);
 }
 
+.btn-sponsor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 94, 91, 0.12);
+  color: #ff5e5b;
+  border: 1px solid rgba(255, 94, 91, 0.35);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--transition-smooth);
+}
+
+.btn-sponsor:hover {
+  background: rgba(255, 94, 91, 0.22);
+  border-color: #ff5e5b;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 94, 91, 0.25);
+}
+
 /* Mobile Hamburger Toggle */
 .btn-mobile-toggle {
   display: none;
@@ -339,6 +362,12 @@ body {
   background: rgba(16, 185, 129, 0.1);
   border-color: rgba(16, 185, 129, 0.3);
   color: var(--brand-emerald);
+}
+
+.sponsor-highlight {
+  background: rgba(255, 94, 91, 0.12);
+  border-color: rgba(255, 94, 91, 0.35);
+  color: #ff5e5b;
 }
 
 /* ==========================================================================

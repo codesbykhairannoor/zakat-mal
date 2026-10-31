@@ -8,16 +8,17 @@
 
 [![npm version](https://img.shields.io/npm/v/zakat-mal.svg?style=for-the-badge&color=2563eb&logo=npm)](https://www.npmjs.com/package/zakat-mal)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg?style=for-the-badge&logo=opensourceinitiative)](LICENSE)
-[![Build & Test](https://img.shields.io/badge/Tests-81%20Passed%20(100%25)-059669.svg?style=for-the-badge&logo=vitest)](https://github.com/codesbykhairannoor/zakat-mal)
+[![Build & Test](https://img.shields.io/badge/Tests-84%20Passed%20(100%25)-059669.svg?style=for-the-badge&logo=vitest)](https://github.com/codesbykhairannoor/zakat-mal)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x%20Strict-3178c6.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero-success.svg?style=for-the-badge)](#)
+[![Sponsor](https://img.shields.io/badge/Sponsor-Tako.id-ff5e5b.svg?style=for-the-badge&logo=heart&logoColor=white)](https://tako.id/codesbykhai)
 [![LLMs.txt Ready](https://img.shields.io/badge/llms.txt-Standard%20Ready-7c3aed.svg?style=for-the-badge)](llms.txt)
 [![Cursor Rules](https://img.shields.io/badge/Cursor-Rules%20Included-000000.svg?style=for-the-badge&logo=cursor)](.cursor/rules/zakat.mdc)
 [![Copilot Ready](https://img.shields.io/badge/GitHub%20Copilot-Instructions%20Included-000000.svg?style=for-the-badge&logo=githubcopilot)](.github/copilot-instructions.md)
 [![Multi-Currency](https://img.shields.io/badge/Currency-USD%20%7C%20EUR%20%7C%20SAR%20%7C%20IDR-f59e0b.svg?style=for-the-badge)](#)
 [![Languages](https://img.shields.io/badge/i18n-English%20%7C%20Indonesian%20%7C%20Arabic-ea580c.svg?style=for-the-badge)](#)
 
-[Features](#-key-highlights) • [Why zakat-mal](#-the-problem-why-existing-calculators-fail) • [Prompt for AI](#-prompt-for-ai-coding-assistants-cursor-claude-copilot-v0-bolt) • [Architecture](#-engine-architecture) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Modules](#-comprehensive-asset-classes) • [Fiqh References](#-authenticated-shariah-dalil-catalog) • [CLI](#-command-line-interface-cli) • [FAQ](#-frequently-asked-questions-faq)
+[Features](#-key-highlights) • [Why zakat-mal](#-the-problem-why-existing-calculators-fail) • [Prompt for AI](#-prompt-for-ai-coding-assistants-cursor-claude-copilot-v0-bolt) • [Architecture](#-engine-architecture) • [Installation](#-installation) • [Quick Start](#-quick-start) • [Modules](#-comprehensive-asset-classes) • [Fiqh References](#-authenticated-shariah-dalil-catalog) • [CLI](#-command-line-interface-cli) • [FAQ](#-frequently-asked-questions-faq) • [Sponsor](#-support--sponsorship)
 
 </div>
 
@@ -683,6 +684,22 @@ Yes. The library has zero external dependencies and zero native bindings. It com
   }
 }
 </script>
+
+---
+
+## 💖 Support & Sponsorship
+
+`zakat-mal` is an independent, 100% free open-source initiative dedicated to bringing zero-dependency, mathematically verified Shari'ah financial engineering to developers and Muslim organizations worldwide.
+
+If this project helps you, your startup, or your institution, you can support its development (traktir kopi / makan):
+
+<p align="center">
+  <a href="https://tako.id/codesbykhai" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/💖%20Support%20via-Tako.id-ff5e5b?style=for-the-badge&logo=heart&logoColor=white" alt="Support on Tako.id" />
+  </a>
+</p>
+
+👉 **Support via Tako.id**: [https://tako.id/codesbykhai](https://tako.id/codesbykhai)
 
 ---
 
